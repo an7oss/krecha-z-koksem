@@ -128,28 +128,55 @@ svg{display:block;width:100%;height:100%}
         <path d="M-78 77 Q-53 53 -28 28 L-7 9 Q2 1 10 8 Q15 13 8 20 L-3 32 Q12 25 19 33 Q23 40 14 46 L4 53 Q14 52 17 60 Q18 67 8 72 L-5 80 Q-16 90 -31 94 L-62 103Z" fill="url(#skin)" stroke="#744c40" stroke-width="2.5" stroke-linejoin="round"/>
         <path d="M-1 17 Q7 20 12 28 M2 39 Q10 43 14 46 M-7 58 Q1 63 8 64" fill="none" stroke="#d59a7d" stroke-width="2.5" stroke-linecap="round"/>
       </g>
-      <!-- Butelka do kolejnej sceny: połowa wody, dym widoczny w górnej części -->
-      <g id="sceneBottle" opacity="0" transform="translate(650 470) rotate(0)">
-        <ellipse cx="0" cy="35" rx="31" ry="10" fill="#080709" opacity=".45"/>
-        <path d="M-12 -99 L-12 -79 Q-13 -73 -22 -65 Q-28 -59 -28 -47 L-28 23 Q-28 38 -14 40 L14 40 Q28 38 28 23 L28 -47 Q28 -59 22 -65 Q13 -73 12 -79 L12 -99Z" fill="#9dc9ca" fill-opacity=".18" stroke="#c7e1df" stroke-width="3"/>
-        <path d="M-25 -3 L-25 23 Q-25 36 -13 36 L13 36 Q25 36 25 23 L25 -3Z" fill="#63a8bd" fill-opacity=".82"/>
-        <path d="M-25 -3 Q-13 -8 0 -3 T25 -3" fill="none" stroke="#c0eff0" stroke-width="2" opacity=".9"/>
-        <rect x="-13" y="-112" width="26" height="16" rx="3" fill="#d5d3c8" stroke="#7d8885" stroke-width="2"/>
+      <!-- Druga scena: wyraźnie plastikowa, pognieciona butelka; dym jest stylizowany, bez instruktażowych detali -->
+      <g id="sceneProps" opacity="0">
+        <g id="foilProp" transform="translate(740 548) rotate(-12)">
+          <path d="M-42 -4 L-27 -19 L-9 -10 L7 -21 L20 -7 L38 -12 L43 5 L27 15 L12 8 L-4 20 L-22 10 L-37 14Z" fill="#aeb3b8" stroke="#e3e5e6" stroke-width="2"/>
+          <path d="M-34 -4 L-13 3 L-8 -10 M-2 8 L10 -7 L29 3 M-22 10 L-12 -1 L7 -3" fill="none" stroke="#f7f7f4" stroke-width="2" opacity=".8"/>
+        </g>
+        <g id="capProp" transform="translate(680 555) rotate(-18)">
+          <ellipse cx="0" cy="0" rx="15" ry="9" fill="#25282a" stroke="#9a9da0" stroke-width="2"/>
+          <path d="M-14 -1 L-13 -10 L13 -10 L14 -1" fill="#34383a" stroke="#b0b4b5" stroke-width="1.5"/>
+          <path d="M2 -8 L24 -29" stroke="#d7e0e1" stroke-width="5" stroke-linecap="round"/>
+          <path d="M2 -8 L24 -29" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".8"/>
+        </g>
+        <g id="lighterProp" transform="translate(800 552) rotate(12)">
+          <rect x="-10" y="-25" width="20" height="45" rx="5" fill="#c7a82e" stroke="#e6d68d" stroke-width="1.5"/>
+          <rect x="-8" y="-28" width="16" height="9" rx="2" fill="#b8bec0"/>
+          <path d="M-6 -13 L6 -13" stroke="#f5e9a6" stroke-width="2"/>
+        </g>
+      </g>
+      <g id="sceneBottle" opacity="0" transform="translate(650 470)">
+        <ellipse cx="0" cy="37" rx="34" ry="10" fill="#080709" opacity=".5"/>
+        <!-- transparent PET bottle with molded ridges and visible crinkles -->
+        <path d="M-12 -99 L-12 -79 Q-13 -72 -21 -65 Q-29 -57 -29 -45 L-29 22 Q-29 39 -15 41 L15 41 Q29 39 29 22 L29 -45 Q29 -57 21 -65 Q13 -72 12 -79 L12 -99Z" fill="#a9d7dc" fill-opacity=".2" stroke="#d5edef" stroke-width="3"/>
+        <path d="M-27 -5 L-27 22 Q-27 37 -14 38 L14 38 Q27 37 27 22 L27 -5Z" fill="#65a9bf" fill-opacity=".88"/>
+        <path d="M-27 -5 Q-13 -10 0 -5 T27 -5" fill="none" stroke="#d2f6f7" stroke-width="2.5"/>
+        <path d="M-26 -37 Q0 -29 26 -37 M-28 -24 Q0 -16 28 -24 M-28 -12 Q0 -4 28 -12" fill="none" stroke="#e2f7f6" stroke-width="2" opacity=".65"/>
+        <path d="M-20 -57 L-25 -43 L-18 -35 L-25 -25 M18 -57 L24 -45 L18 -36 L25 -28" fill="none" stroke="#e6f5f4" stroke-width="2.5" opacity=".9"/>
+        <path d="M-12 -99 L-12 -79 Q-13 -72 -21 -65" fill="none" stroke="#f1ffff" stroke-width="3" opacity=".75"/>
+        <rect x="-13" y="-112" width="26" height="16" rx="3" fill="#d6d6ce" stroke="#8b9695" stroke-width="2"/>
         <path d="M-12 -96 L12 -96" stroke="#f3f1e7" stroke-width="2"/>
         <g id="bottleSmoke" fill="none" stroke-linecap="round">
-          <path d="M-13 -14 C-29 -25 3 -34 -9 -47 C-18 -57 7 -65 0 -78" stroke="#e8e2dd" stroke-width="7" opacity=".68"/>
-          <path d="M9 -12 C24 -23 0 -32 14 -43 C27 -54 4 -63 9 -76" stroke="#c8c6cf" stroke-width="5" opacity=".65"/>
-          <path d="M-2 -13 C7 -27 -13 -37 0 -50 C12 -61 -3 -69 2 -81" stroke="#fff4e7" stroke-width="3" opacity=".8"/>
+          <path d="M-20 -11 C-35 -24 -9 -29 -19 -43 C-31 -56 -3 -60 -13 -78 C-18 -87 -5 -91 0 -81 C8 -68 -4 -60 11 -48 C25 -37 1 -27 19 -12" stroke="#e9e5e4" stroke-width="11" opacity=".88"/>
+          <path d="M-9 -8 C7 -23 -15 -35 2 -49 C19 -62 -7 -72 7 -86 C17 -96 26 -81 18 -70 C9 -56 30 -48 18 -33 C7 -21 20 -17 16 -9" stroke="#d0ced6" stroke-width="9" opacity=".86"/>
+          <path d="M-16 -10 C-2 -26 -12 -37 2 -51 C13 -62 -2 -75 5 -84 M13 -10 C-1 -23 15 -32 9 -43" stroke="#fff8f0" stroke-width="4.5" opacity=".95"/>
+          <circle cx="-12" cy="-45" r="9" fill="#e8e3e5" stroke="none" opacity=".65"/>
+          <circle cx="13" cy="-61" r="11" fill="#e8e3e5" stroke="none" opacity=".6"/>
         </g>
-        <path d="M-19 -50 Q0 -58 19 -50" fill="none" stroke="#d8eeee" stroke-width="1.5" opacity=".35"/>
       </g>
       <g id="bottleHand" opacity="0" transform="translate(650 470)">
         <path d="M-57 42 Q-43 24 -29 4 L-18 -12 Q-11 -20 -4 -13 Q0 -8 -6 0 L-13 10 Q-1 5 5 12 Q9 18 1 25 L-7 32 Q2 32 4 39 Q5 45 -4 50 L-17 57 Q-27 66 -41 69 L-57 67Z" fill="url(#skin)" stroke="#744c40" stroke-width="2.5" stroke-linejoin="round"/>
         <path d="M-9 0 Q0 4 3 11 M-9 25 Q-2 29 1 31" fill="none" stroke="#d59a7d" stroke-width="2.5" stroke-linecap="round"/>
       </g>
-      <g id="exhaleSmoke" opacity="0" fill="#e8e3e0" fill-opacity=".72">
+      <g id="bottleHand2" opacity="0" transform="translate(650 470)">
+        <path d="M50 38 Q39 23 27 5 L16 -12 Q10 -20 3 -14 Q-2 -9 4 0 L12 12 Q0 6 -6 13 Q-10 20 -2 26 L6 33 Q-3 33 -5 40 Q-6 46 3 51 L17 58 Q27 66 41 68 L54 64Z" fill="url(#skin)" stroke="#744c40" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M8 1 Q0 5 -3 12 M8 26 Q1 30 -2 32" fill="none" stroke="#d59a7d" stroke-width="2.5" stroke-linecap="round"/>
+      </g>
+      <g id="exhaleSmoke" opacity="0" fill="#e8e3e0" fill-opacity=".78">
         <path d="M510 305 C493 293 505 280 520 283 C512 267 531 258 541 273 C554 260 572 277 562 290 C579 297 568 315 551 311 C541 325 521 320 522 308Z"/>
-        <circle cx="565" cy="270" r="11" opacity=".45"/><circle cx="580" cy="281" r="7" opacity=".3"/>
+        <path d="M532 294 C514 277 536 265 550 277 C563 260 583 277 573 293 C590 306 570 325 555 316 C542 331 525 315 532 294Z" opacity=".7"/>
+        <circle cx="565" cy="270" r="14" opacity=".5"/><circle cx="580" cy="281" r="9" opacity=".38"/><circle cx="501" cy="286" r="10" opacity=".4"/>
       </g>
       <!-- subtle warm pool of light over the tabletop -->
       <ellipse cx="490" cy="530" rx="340" ry="74" fill="#d39a6a" opacity=".08"/>
@@ -170,11 +197,13 @@ svg{display:block;width:100%;height:100%}
   const card = document.getElementById('biedronkaCard');
   const bottle = document.getElementById('sceneBottle');
   const bottleHand = document.getElementById('bottleHand');
+  const bottleHand2 = document.getElementById('bottleHand2');
+  const sceneProps = document.getElementById('sceneProps');
   const bottleSmoke = document.getElementById('bottleSmoke');
   const exhaleSmoke = document.getElementById('exhaleSmoke');
   const tag = document.querySelector('.tag');
   const scene = document.querySelector('.scene');
-  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleSmoke || !exhaleSmoke) return;
+  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
   let busy = false;
@@ -208,57 +237,58 @@ svg{display:block;width:100%;height:100%}
     button.style.display = 'none';
     if (tag) tag.textContent = 'Prototyp • scena 02';
 
-    // Przejście: elementy pierwszej sceny znikają, a światło zmienia nastrój.
-    await animate(650, t => {
+    // Krótkie, filmowe przejście między scenami.
+    await animate(300, t => {
       const opacity = 1 - t;
       card.style.opacity = String(opacity);
       flour.style.opacity = String(opacity);
       paper.style.opacity = String(opacity);
       hand.style.opacity = String(opacity);
-      if (scene) scene.style.backgroundColor = 'rgb(' + Math.round(27 - 8*t) + ',' + Math.round(23 - 4*t) + ',' + Math.round(25 + 8*t) + ')';
     });
     card.style.display = 'none';
     flour.style.display = 'none';
     paper.style.display = 'none';
     hand.style.display = 'none';
-
+    sceneProps.style.opacity = '1';
     bottle.style.opacity = '1';
     bottleHand.style.opacity = '1';
+    bottleHand2.style.opacity = '1';
     bottle.setAttribute('transform', 'translate(650 470) rotate(0)');
     bottleHand.setAttribute('transform', 'translate(650 470)');
+    bottleHand2.setAttribute('transform', 'translate(650 470)');
+    bottleSmoke.style.opacity = '1';
     bottleSmoke.setAttribute('transform', 'rotate(0)');
-    await sleep(180);
 
-    // Postać sięga po butelkę i podnosi ją do ust.
-    await animate(750, t => {
-      const x = 650 + (550 - 650) * t;
-      const y = 470 + (420 - 470) * t;
-      const a = -30 * t;
-      bottle.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + a + ')');
-      bottleHand.setAttribute('transform', 'translate(' + (x-7) + ' ' + (y+2) + ') rotate(' + a + ')');
-      setHead(0, -2*t, 0);
+    // Szybkie, energiczne potrząsanie butelką; dym i woda wizualnie się mieszają.
+    await animate(850, t => {
+      const shakeY = Math.sin(t * Math.PI * 12) * 27;
+      const shakeX = Math.sin(t * Math.PI * 6) * 7;
+      const angle = Math.sin(t * Math.PI * 12) * 17;
+      const x = 575 + shakeX;
+      const y = 420 + shakeY;
+      bottle.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + angle + ')');
+      bottleHand.setAttribute('transform', 'translate(' + (x-4) + ' ' + (y+2) + ') rotate(' + angle + ')');
+      bottleHand2.setAttribute('transform', 'translate(' + (x+4) + ' ' + (y+2) + ') rotate(' + angle + ')');
+      bottleSmoke.setAttribute('transform', 'rotate(' + (Math.sin(t * Math.PI * 12) * 24) + ')');
+      setHead(0, -2 * t, 0);
     });
 
-    // Butelka zostaje potrząśnięta; widoczny dym wiruje nad wodą.
-    await animate(900, t => {
-      const shake = Math.sin(t * Math.PI * 10) * 9 * (1 - t * .35);
-      bottle.setAttribute('transform', 'translate(550 420) rotate(' + (-30 + shake) + ')');
-      bottleHand.setAttribute('transform', 'translate(543 422) rotate(' + (-30 + shake) + ')');
-      bottleSmoke.setAttribute('transform', 'rotate(' + (Math.sin(t * Math.PI * 8) * 16) + ')');
-    });
-
-    // Krótki wdech, a następnie wydech widoczny w kadrze.
-    await animate(500, t => {
-      bottle.setAttribute('transform', 'translate(' + (550-7*t) + ' ' + (420-4*t) + ') rotate(' + (-30-5*t) + ')');
-      bottleHand.setAttribute('transform', 'translate(' + (543-7*t) + ' ' + (422-4*t) + ') rotate(' + (-30-5*t) + ')');
+    // Postać unosi butelkę; oba dłonie pozostają widoczne, a plastik lekko się ugina.
+    await animate(450, t => {
+      const x = 550 - 3*t, y = 405 - 5*t, angle = -28;
+      bottle.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + angle + ') scale(' + (1 - .035*Math.sin(t*Math.PI)) + ' 1)');
+      bottleHand.setAttribute('transform', 'translate(' + (x-4) + ' ' + (y+2) + ') rotate(' + angle + ')');
+      bottleHand2.setAttribute('transform', 'translate(' + (x+4) + ' ' + (y+2) + ') rotate(' + angle + ')');
       setHead(0, -5*t, 0);
-      bottleSmoke.setAttribute('opacity', String(1 - t*.55));
     });
+
+    // Duży, stylizowany obłok dymu po geście postaci.
     await animate(800, t => {
       exhaleSmoke.setAttribute('opacity', String(t));
-      exhaleSmoke.setAttribute('transform', 'translate(' + (10*t) + ' ' + (-3*t) + ') scale(' + (0.7 + 0.45*t) + ')');
+      exhaleSmoke.setAttribute('transform', 'translate(' + (12*t) + ' ' + (-7*t) + ') scale(' + (0.65 + 0.75*t) + ')');
+      bottleSmoke.setAttribute('opacity', String(1 - .7*t));
     });
-    await sleep(350);
+    await sleep(120);
     busy = false;
   }
 
