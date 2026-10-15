@@ -55,7 +55,7 @@ svg{display:block;width:100%;height:100%}
 <main class="page">
   <header class="top">
     <div class="brand">BESTIA <span>Z KOPERNIKA</span></div>
-    <div class="tag">Prototyp • scena 01</div>
+    <div class="tag">9:28</div>
   </header>
   <section class="scene" aria-label="Postać przy stole; po przejściu do drugiej sceny pojawia się butelka z wodą i dymem">
     <svg viewBox="0 0 980 760" role="img" aria-labelledby="sceneTitle" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -488,7 +488,7 @@ svg{display:block;width:100%;height:100%}
     busy = true;
     button.disabled = true;
     button.style.display = 'none';
-    if (tag) tag.textContent = 'Prototyp • scena 02';
+    if (tag) tag.textContent = '11:31';
 
     // Krótkie, filmowe przejście między scenami.
     await animate(300, t => {
@@ -569,7 +569,7 @@ svg{display:block;width:100%;height:100%}
     busy = true;
     button.disabled = true;
     button.style.display = 'none';
-    if (tag) tag.textContent = 'Prototyp • scena 03';
+    if (tag) tag.textContent = '14:53';
     await animate(460, t => {
       const opacity = 1 - t;
       bottle.style.opacity = String(opacity);
@@ -659,7 +659,7 @@ svg{display:block;width:100%;height:100%}
     busy = true;
     button.disabled = true;
     button.style.display = 'none';
-    if (tag) tag.textContent = 'Prototyp • scena 04';
+    if (tag) tag.textContent = '18:12';
     await animate(450, t => {
       medicineProps.style.opacity = String(1-t);
       pillReach.style.opacity = String(1-t);
@@ -750,7 +750,7 @@ svg{display:block;width:100%;height:100%}
     busy = true;
     button.disabled = true;
     button.style.display = 'none';
-    if (tag) tag.textContent = 'Prototyp • epilog';
+    if (tag) tag.textContent = '21:36';
     await animate(650, t => transitionFade.setAttribute('opacity', String(t)));
     finalScene.setAttribute('opacity', '1');
     finalGhost.setAttribute('opacity', '0');
