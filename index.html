@@ -83,10 +83,12 @@ svg{display:block;width:100%;height:100%}
       <path d="M0 561 Q480 586 980 561 M0 625 Q490 649 980 625 M0 699 Q490 719 980 699" fill="none" stroke="#8a6048" stroke-width="3" opacity=".35"/>
       <path d="M80 583 Q260 601 410 591 M625 595 Q785 607 925 584" fill="none" stroke="#1f1717" stroke-width="4" opacity=".5"/>
       <!-- one neat, straight line of flour -->
+      <g id="flourLine">
       <ellipse cx="491" cy="544" rx="240" ry="15" fill="#e9dfce" opacity=".12" filter="url(#shadow)"/>
       <path d="M275 541 Q390 537 491 540 Q605 543 707 539" fill="none" stroke="#f4eee2" stroke-width="9" stroke-linecap="round" opacity=".96"/>
       <path d="M279 539 Q390 536 491 538 Q603 540 703 537" fill="none" stroke="#fffaf0" stroke-width="3" stroke-linecap="round" opacity=".9"/>
       <g fill="#f7f1e7" opacity=".82"><circle cx="325" cy="536" r="2"/><circle cx="371" cy="544" r="1.7"/><circle cx="438" cy="535" r="1.6"/><circle cx="528" cy="544" r="1.8"/><circle cx="600" cy="535" r="1.7"/><circle cx="665" cy="541" r="1.5"/></g>
+      </g>
       <!-- small rolled paper beside the line -->
       <g id="paperRoll" transform="translate(754 520) rotate(-13)">
         <ellipse cx="3" cy="14" rx="36" ry="10" fill="#100d0e" opacity=".45"/>
@@ -100,10 +102,63 @@ svg{display:block;width:100%;height:100%}
     </svg>
     <div class="grain"></div>
   </section>
-  <div class="actionbar"><button class="action-button" id="startAction" type="button">ZAPIERDOL PASA</button></div>\n  <section class="caption">
+  <div class="actionbar"><button class="action-button" id="startAction" type="button">ZAPIERDOL PASA</button></div>
+  <section class="caption">
     <div><h1>Koks. Pierwsza scena.</h1><p>Koks siedzi przy stole. Na blacie leży jedna równa linia mąki, a obok mały rulonik. Na razie nic się nie dzieje — to dopiero początek gry.</p></div>
     <div class="status">W budowie<br>Etap 01</div>
   </section>
 </main>
+
+<script>
+(function () {
+  const button = document.getElementById('startAction');
+  const paper = document.getElementById('paperRoll');
+  const flour = document.getElementById('flourLine');
+  const svg = document.querySelector('.scene svg');
+  if (!button || !paper || !flour || !svg) return;
+  let busy = false;
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  function movePaper(fromX, fromY, toX, toY, fromR, toR, duration) {
+    return new Promise(resolve => {
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = t * t * (3 - 2 * t);
+        const x = fromX + (toX - fromX) * eased;
+        const y = fromY + (toY - fromY) * eased;
+        const r = fromR + (toR - fromR) * eased;
+        paper.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + r + ')');
+        if (t < 1) requestAnimationFrame(tick); else resolve();
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+  button.addEventListener('click', async function () {
+    if (busy) return;
+    busy = true;
+    button.disabled = true;
+    button.textContent = 'KOKS W AKCJI…';
+    flour.style.opacity = '1';
+    paper.style.opacity = '1';
+    await movePaper(754, 520, 494, 300, -13, 0, 700);
+    await sleep(250);
+    await movePaper(494, 300, 504, 530, 0, -4, 850);
+    await movePaper(504, 530, 704, 538, -4, 0, 1300);
+    await new Promise(resolve => {
+      const start = performance.now();
+      function fade(now) {
+        const t = Math.min(1, (now - start) / 500);
+        flour.style.opacity = String(1 - t);
+        if (t < 1) requestAnimationFrame(fade); else resolve();
+      }
+      requestAnimationFrame(fade);
+    });
+    button.disabled = false;
+    button.textContent = 'ZAPIERDOL PASA';
+    busy = false;
+  });
+})();
+</script>
+
 </body>
 </html>
