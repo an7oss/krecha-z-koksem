@@ -70,7 +70,9 @@ svg{display:block;width:100%;height:100%}
       <path d="M434 250 Q454 237 472 248M509 248 Q530 236 550 250" stroke="#302226" stroke-width="8" stroke-linecap="round" fill="none"/>
       <path d="M438 264 Q453 257 468 264M514 264 Q531 257 545 264" stroke="#171519" stroke-width="5" stroke-linecap="round" fill="none"/>
       <path d="M490 264 L479 298 Q489 307 502 298" stroke="#805244" stroke-width="5" stroke-linecap="round" fill="none"/>
-      <path d="M463 326 Q491 338 520 324" stroke="#4a2929" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path id="mouthLine" d="M463 326 Q491 338 520 324" stroke="#4a2929" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path id="mouthOpen" d="M462 324 Q491 348 522 323 Q514 354 491 354 Q469 349 462 324Z" fill="#291719" stroke="#7b433c" stroke-width="3" opacity="0"/>
+      <path id="mouthTongue" d="M477 343 Q491 337 505 343" fill="none" stroke="#b96866" stroke-width="4" stroke-linecap="round" opacity="0"/>
       <path d="M454 336 Q491 353 527 335" stroke="#d09579" stroke-width="3" fill="none" opacity=".55"/>
       </g>
       <!-- arms resting near the table -->
@@ -180,21 +182,21 @@ svg{display:block;width:100%;height:100%}
       </g>
       <!-- Third scene: fictional medicine props and white pills -->
       <g id="medicineProps" opacity="0">
-        <g transform="translate(415 557) rotate(-7)">
+        <g transform="translate(340 557) rotate(-5)">
           <rect x="-67" y="-31" width="134" height="62" rx="4" fill="#d9d5cb" stroke="#f2eee5" stroke-width="2"/>
           <rect x="-61" y="-25" width="122" height="18" fill="#9d252c"/>
           <text x="0" y="-12" font-size="15" font-weight="950" text-anchor="middle" fill="#fff7ee">TICODIN</text>
           <path d="M-61 1 H61" stroke="#8f8a82" stroke-width="1.5"/>
           <text x="0" y="19" font-size="10" font-weight="800" text-anchor="middle" fill="#383237">LEK • OSTRZEŻENIE</text>
         </g>
-        <g transform="translate(570 557) rotate(6)">
+        <g transform="translate(535 557) rotate(3)">
           <rect x="-57" y="-30" width="114" height="60" rx="4" fill="#e5e2dc" stroke="#f7f3ec" stroke-width="2"/>
           <rect x="-52" y="-25" width="104" height="17" fill="#2e4b68"/>
           <text x="0" y="-12" font-size="16" font-weight="950" text-anchor="middle" fill="#fff">OKSY</text>
           <path d="M-52 0 H52" stroke="#9b9994" stroke-width="1.5"/>
           <text x="0" y="18" font-size="9" font-weight="800" text-anchor="middle" fill="#383237">NIE DO ZABAWY</text>
         </g>
-        <g transform="translate(737 557) rotate(-4)">
+        <g transform="translate(760 557) rotate(-3)">
           <rect x="-72" y="-30" width="144" height="60" rx="4" fill="#d7c5aa" stroke="#f1e2ca" stroke-width="2"/>
           <rect x="-66" y="-24" width="132" height="17" fill="#563a30"/>
           <text x="0" y="-12" font-size="10" font-weight="950" text-anchor="middle" fill="#fff4e4">SPECJALNOŚĆ</text>
@@ -213,6 +215,12 @@ svg{display:block;width:100%;height:100%}
         <ellipse id="pill1" cx="490" cy="570" rx="10" ry="6" transform="rotate(-20 490 570)" fill="#fffdf6" stroke="#b9b5ae" stroke-width="1.5"/>
         <ellipse id="pill2" cx="516" cy="582" rx="10" ry="6" transform="rotate(15 516 582)" fill="#fffdf6" stroke="#b9b5ae" stroke-width="1.5"/>
         <ellipse id="pill3" cx="538" cy="566" rx="10" ry="6" transform="rotate(-15 538 566)" fill="#fffdf6" stroke="#b9b5ae" stroke-width="1.5"/>
+      </g>
+      <g id="pillReach" opacity="0">
+        <path d="M625 618 Q604 585 584 550 Q560 510 545 468 Q531 430 515 393" fill="none" stroke="#28252b" stroke-width="39" stroke-linecap="round"/>
+        <path d="M625 618 Q604 585 584 550 Q560 510 545 468 Q531 430 515 393" fill="none" stroke="#51474a" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+        <path d="M515 399 Q504 387 496 374 L483 354 Q478 346 485 341 Q492 338 498 347 L507 359 L501 342 Q499 333 507 331 Q515 331 518 341 L524 355 L521 337 Q522 329 530 331 Q537 333 536 342 L536 360 Q542 352 548 357 Q553 362 548 371 L536 391 Q530 402 515 399Z" fill="url(#skin)" stroke="#744c40" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M488 349 L499 363 M509 342 L517 360 M529 341 L531 359" fill="none" stroke="#d59a7d" stroke-width="2.5" stroke-linecap="round"/>
       </g>
       <!-- subtle warm pool of light over the tabletop -->
       <ellipse cx="490" cy="530" rx="340" ry="74" fill="#d39a6a" opacity=".08"/>
@@ -243,9 +251,12 @@ svg{display:block;width:100%;height:100%}
   const pill1 = document.getElementById('pill1');
   const pill2 = document.getElementById('pill2');
   const pill3 = document.getElementById('pill3');
+  const pillReach = document.getElementById('pillReach');
+  const mouthOpen = document.getElementById('mouthOpen');
+  const mouthTongue = document.getElementById('mouthTongue');
   const tag = document.querySelector('.tag');
   const scene = document.querySelector('.scene');
-  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3) return;
+  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
   let busy = false;
@@ -359,8 +370,7 @@ svg{display:block;width:100%;height:100%}
     button.disabled = true;
     button.style.display = 'none';
     if (tag) tag.textContent = 'Prototyp • scena 03';
-
-    await animate(420, t => {
+    await animate(650, t => {
       const opacity = 1 - t;
       bottle.style.opacity = String(opacity);
       sceneProps.style.opacity = String(opacity);
@@ -373,26 +383,47 @@ svg{display:block;width:100%;height:100%}
     medicineProps.style.opacity = '1';
     whitePills.style.opacity = '1';
     pillTaking.style.opacity = '1';
-
-    // Brief, stylized depiction of pill misuse; no dosage or how-to details.
-    await animate(650, t => {
-      setHead(0, -3*t, 0);
-      pill1.setAttribute('cx', String(490 + 4*t));
-      pill1.setAttribute('cy', String(570 - 90*t));
-      pill2.setAttribute('cx', String(516 - 5*t));
-      pill2.setAttribute('cy', String(582 - 105*t));
-      pill3.setAttribute('cx', String(538 - 13*t));
-      pill3.setAttribute('cy', String(566 - 83*t));
+    pillReach.style.opacity = '0';
+    mouthOpen.style.opacity = '0';
+    mouthTongue.style.opacity = '0';
+    pill1.setAttribute('opacity', '1');
+    pill2.setAttribute('opacity', '1');
+    pill3.setAttribute('opacity', '1');
+    await sleep(1800);
+    await animate(1800, t => {
+      const eased = t*t*(3-2*t);
+      pillReach.style.opacity = String(eased);
+      pillReach.setAttribute('transform', 'translate(' + (-24*eased) + ' ' + (18*eased) + ')');
+      setHead(0, -2*eased, 0);
     });
-    await animate(500, t => {
-      const opacity = 1 - t;
+    await sleep(700);
+    mouthOpen.style.opacity = '1';
+    mouthTongue.style.opacity = '1';
+    await animate(2200, t => {
+      const eased = t*t*(3-2*t);
+      pill1.setAttribute('cx', String(490 + 1*eased));
+      pill1.setAttribute('cy', String(570 - 225*eased));
+      pill2.setAttribute('cx', String(516 - 12*eased));
+      pill2.setAttribute('cy', String(582 - 238*eased));
+      pill3.setAttribute('cx', String(538 - 27*eased));
+      pill3.setAttribute('cy', String(566 - 218*eased));
+      pillReach.setAttribute('transform', 'translate(' + (-24 - 10*eased) + ' ' + (18 - 38*eased) + ')');
+      setHead(0, -2 - 3*eased, 0);
+    });
+    await sleep(1200);
+    await animate(1100, t => {
+      const opacity = 1-t;
       pill1.setAttribute('opacity', String(opacity));
       pill2.setAttribute('opacity', String(opacity));
       pill3.setAttribute('opacity', String(opacity));
-      setHead(0, -3 - 4*t, 0);
+      mouthTongue.style.opacity = String(opacity);
+      pillReach.style.opacity = String(1 - .35*t);
+      setHead(0, -5 + 5*t, 0);
     });
+    mouthOpen.style.opacity = '0';
+    pillReach.style.opacity = '0';
     pillTaking.style.opacity = '0';
-    await sleep(180);
+    await sleep(500);
     busy = false;
     button.textContent = 'KONIEC';
     button.style.display = '';
