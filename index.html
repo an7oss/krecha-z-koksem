@@ -443,7 +443,7 @@ svg{display:block;width:100%;height:100%}
     button.disabled = true;
     button.style.display = 'none';
     if (tag) tag.textContent = 'Prototyp • scena 03';
-    await animate(650, t => {
+    await animate(460, t => {
       const opacity = 1 - t;
       bottle.style.opacity = String(opacity);
       sceneProps.style.opacity = String(opacity);
@@ -463,15 +463,15 @@ svg{display:block;width:100%;height:100%}
     [pill1, pill2, pill3].forEach(p => p.setAttribute('opacity', '0'));
 
     // Hold on the spread-out, readable packages before the character acts.
-    await sleep(2200);
+    await sleep(700);
 
     // The hand visibly lowers to the loose pills, gathers several, then rises to the face.
-    await animate(1150, t => {
+    await animate(620, t => {
       const eased = t*t*(3-2*t);
       pillReach.setAttribute('transform', 'translate(0 ' + (245 - 15*eased) + ') rotate(' + (-5*eased) + ' 520 560)');
       setHead(0, 2*eased, 0);
     });
-    await sleep(350);
+    await sleep(90);
 
     // Pills are now in the hand; the open mouth is visible before the hand reaches it.
     whitePills.style.opacity = '0';
@@ -481,7 +481,7 @@ svg{display:block;width:100%;height:100%}
       p.setAttribute('cx', String(510 + i*9));
       p.setAttribute('cy', String(575 - i*5));
     });
-    await animate(850, t => {
+    await animate(520, t => {
       const eased = t*t*(3-2*t);
       pillReach.setAttribute('transform', 'translate(0 ' + (230 - 230*eased) + ')');
       pillTaking.setAttribute('transform', 'translate(' + (0 - 5*eased) + ' ' + (-8*eased) + ')');
@@ -509,9 +509,9 @@ svg{display:block;width:100%;height:100%}
     });
     [pill1, pill2, pill3].forEach(p => p.setAttribute('opacity', '0'));
     pillTaking.removeAttribute('transform');
-    await sleep(250);
+    await sleep(100);
     // Brief swallowing motion, then the mouth closes and the hand drops away.
-    await animate(420, t => {
+    await animate(300, t => {
       setHead(0, -5 + 5*t, 0);
       mouthOpen.style.opacity = String(1-t);
       mouthTongue.style.opacity = String(1-t);
@@ -520,7 +520,7 @@ svg{display:block;width:100%;height:100%}
     pillReach.style.opacity = '0';
     pillTaking.style.opacity = '0';
     whitePills.style.opacity = '0';
-    await sleep(500);
+    await sleep(250);
     busy = false;
     button.textContent = 'ZABAWA Z HUBERTEM';
     button.style.display = '';
@@ -551,48 +551,49 @@ svg{display:block;width:100%;height:100%}
       fistArm.setAttribute('transform', 'translate(' + (250 - 250*t) + ' 0)');
       setHead(-5*t, -2*t, -2*t);
     });
-    // A short, cartoon-like spray cloud and a startled flinch.
+    // Keep a clearly visible spray cloud hanging in front of his face.
     sprayMist.style.opacity = '1';
-    await animate(550, t => {
+    await animate(520, t => {
       sprayMist.setAttribute('transform', 'translate(' + (-65*t) + ' ' + (8*t) + ') scale(' + (1 + .12*t) + ')');
       setHead(-9 - 5*t, -4*t, -4*t);
       mouthOpen.style.opacity = String(.2 + .8*t);
       reactionLines.style.opacity = String(t);
     });
-    await sleep(250);
-    sprayMist.style.opacity = '0';
-    // He recoils as a wooden chopping board swings down; impact is shown with stars.
-    await animate(380, t => {
-      boardArm.setAttribute('transform', 'translate(0 ' + (-320 + 330*t) + ') rotate(' + (12*t) + ' 660 170)');
-      setHead(-14 + 4*t, -4 + 13*t, -4 + 8*t);
-    });
-    impactStars.style.opacity = '1';
-    await animate(180, t => {
-      setHead(-10 + 20*t, 9 - 7*t, 4 - 8*t);
-      impactStars.setAttribute('transform', 'translate(0 ' + (-8*t) + ') scale(' + (1 + .12*t) + ')');
+    // Five-second slapstick barrage: spray stays visible while repeated board swats
+    // and punches make his head recoil more strongly. No blood or graphic injury.
+    await animate(5000, t => {
+      const ms = t * 5000;
+      const beat = Math.floor(ms / 560);
+      const phase = (ms % 560) / 560;
+      const hit = Math.max(0, 1 - phase * 3.2);
+      const recoil = Math.sin(phase * Math.PI) * (8 + beat * 2.2);
+      if (beat % 3 === 0) {
+        boardArm.setAttribute('transform', 'translate(0 ' + (-320 + 355 * Math.min(1, phase * 2.4)) + ') rotate(' + (16 * Math.min(1, phase * 2.4)) + ' 660 170)');
+        fistArm.setAttribute('transform', 'translate(0 0)');
+      } else if (beat % 3 === 1) {
+        boardArm.setAttribute('transform', 'translate(0 -320)');
+        fistArm.setAttribute('transform', 'translate(' + (-250 + 120 * Math.min(1, phase * 2.8)) + ' 0)');
+      } else {
+        boardArm.setAttribute('transform', 'translate(0 ' + (-320 + 330 * Math.min(1, phase * 2.5)) + ') rotate(' + (10 * Math.min(1, phase * 2.5) + 5) + ' 660 170)');
+        fistArm.setAttribute('transform', 'translate(' + (-250 + 85 * Math.min(1, phase * 2.5)) + ' 0)');
+      }
+      const direction = beat % 2 === 0 ? -1 : 1;
+      setHead(direction * (5 + recoil + hit * (9 + beat * 1.4)), -2 + hit * (4 + beat), direction * (2 + hit * (5 + beat)));
+      impactStars.style.opacity = hit > .55 ? '1' : '0';
+      impactStars.setAttribute('transform', 'translate(' + (direction * 10 * hit) + ' ' + (-6 * hit) + ') scale(' + (1 + .22 * hit) + ')');
+      reactionLines.style.opacity = hit > .2 ? '1' : '.35';
+      // The mist billows and lingers instead of disappearing after the first puff.
+      sprayMist.style.opacity = String(.7 + .3 * Math.abs(Math.sin(ms / 230)));
+      sprayMist.setAttribute('transform', 'translate(' + (-65 - 18 * Math.sin(ms / 180)) + ' ' + (8 + 5 * Math.sin(ms / 145)) + ') scale(' + (1.12 + .09 * Math.abs(Math.sin(ms / 210))) + ')');
+      mouthOpen.style.opacity = String(.55 + .45 * Math.abs(Math.sin(ms / 190)));
     });
     impactStars.style.opacity = '0';
-    await animate(360, t => {
-      boardArm.setAttribute('transform', 'translate(0 ' + (10 - 330*t) + ') rotate(' + (12*(1-t)) + ' 660 170)');
-      setHead(10 - 4*t, 2*t, -4 + 4*t);
-    });
-    // A quick, non-graphic punch with a small comic-book impact flash.
-    await animate(300, t => {
-      fistArm.setAttribute('transform', 'translate(' + (-250 + 95*t) + ' 0)');
-      setHead(6*t, -2*t, 2*t);
-    });
-    impactStars.style.opacity = '1';
-    await animate(190, t => {
-      setHead(6 - 19*t, -2 + 7*t, 2 - 6*t);
+    sprayMist.style.opacity = '0';
+    await animate(220, t => {
+      setHead(-8 * (1-t), 3 * (1-t), -3 * (1-t));
+      mouthOpen.style.opacity = String(1-t);
       reactionLines.style.opacity = String(1-t);
     });
-    impactStars.style.opacity = '0';
-    await animate(400, t => {
-      fistArm.setAttribute('transform', 'translate(' + (-155 - 95*t) + ' 0)');
-      setHead(-13 + 13*t, 5 - 5*t, -4 + 4*t);
-      mouthOpen.style.opacity = String(1-t);
-    });
-    await sleep(450);
     // Arms retreat; Hubert stays seated, dazed, but unharmed on-screen.
     await animate(450, t => {
       sprayArm.setAttribute('transform', 'translate(' + (240*t) + ' 0)');
