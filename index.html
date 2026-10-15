@@ -182,23 +182,23 @@ svg{display:block;width:100%;height:100%}
     });
     await sleep(100);
     await animate(650, t => {
-      setProps(605 + (490 - 605) * t, 510 + (475 - 510) * t);
+      setProps(605 + (490 - 605) * t, 510 + (332 - 510) * t);
       setHead(0, 8 * t, 0);
     });
 
     // The character slowly slumps down to the tabletop, keeping the roll at the nose.
     await animate(1050, t => {
-      const dy = 8 + 137 * t;
+      const dy = 145 * t;
       const dx = 70 * t;
       setHead(dx, dy, 5 * t);
-      setProps(490 + dx, 475 + 137 * t);
+      setProps(490 + dx, 332 + dy);
     });
 
     // Hold at the tabletop edge for a moment; the scattered powder fades under the roll.
     await animate(850, t => {
       const dx = 70 + 8 * t;
       setHead(dx, 145, 5);
-      setProps(490 + dx, 612);
+      setProps(490 + dx, 477);
       eraseMask.setAttribute('width', String(90 + 78 * t));
     });
     await sleep(250);
@@ -206,7 +206,7 @@ svg{display:block;width:100%;height:100%}
     // Pull back and sit upright again so the scene can be replayed.
     await animate(800, t => {
       setHead(78 * (1 - t), 145 * (1 - t), 5 * (1 - t));
-      setProps(568 + (640 - 568) * t, 612 + (500 - 612) * t);
+      setProps(568 + (640 - 568) * t, 477 + (500 - 477) * t);
       eraseMask.setAttribute('width', String(168 * (1 - t)));
     });
 
