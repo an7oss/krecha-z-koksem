@@ -196,7 +196,7 @@ svg{display:block;width:100%;height:100%}
           <path d="M-52 0 H52" stroke="#9b9994" stroke-width="1.5"/>
           <text x="0" y="18" font-size="9" font-weight="800" text-anchor="middle" fill="#383237">NIE DO ZABAWY</text>
         </g>
-        <g transform="translate(760 557) rotate(-3)">
+        <g transform="translate(690 557) rotate(-3)">
           <rect x="-72" y="-30" width="144" height="60" rx="4" fill="#d7c5aa" stroke="#f1e2ca" stroke-width="2"/>
           <rect x="-66" y="-24" width="132" height="17" fill="#563a30"/>
           <text x="0" y="-12" font-size="10" font-weight="950" text-anchor="middle" fill="#fff4e4">SPECJALNOŚĆ</text>
@@ -382,47 +382,71 @@ svg{display:block;width:100%;height:100%}
     exhaleSmoke.style.display = 'none';
     medicineProps.style.opacity = '1';
     whitePills.style.opacity = '1';
-    pillTaking.style.opacity = '1';
-    pillReach.style.opacity = '0';
+    pillTaking.style.opacity = '0';
+    pillReach.style.opacity = '1';
+    pillReach.setAttribute('transform', 'translate(0 245)');
     mouthOpen.style.opacity = '0';
     mouthTongue.style.opacity = '0';
-    pill1.setAttribute('opacity', '1');
-    pill2.setAttribute('opacity', '1');
-    pill3.setAttribute('opacity', '1');
-    await sleep(1800);
-    await animate(1800, t => {
+    [pill1, pill2, pill3].forEach(p => p.setAttribute('opacity', '0'));
+
+    // Hold on the spread-out, readable packages before the character acts.
+    await sleep(2200);
+
+    // The hand visibly lowers to the loose pills, gathers several, then rises to the face.
+    await animate(1150, t => {
       const eased = t*t*(3-2*t);
-      pillReach.style.opacity = String(eased);
-      pillReach.setAttribute('transform', 'translate(' + (-24*eased) + ' ' + (18*eased) + ')');
+      pillReach.setAttribute('transform', 'translate(0 ' + (245 - 15*eased) + ') rotate(' + (-5*eased) + ' 520 560)');
+      setHead(0, 2*eased, 0);
+    });
+    await sleep(350);
+
+    // Pills are now in the hand; the open mouth is visible before the hand reaches it.
+    whitePills.style.opacity = '0';
+    pillTaking.style.opacity = '1';
+    [pill1, pill2, pill3].forEach((p, i) => {
+      p.setAttribute('opacity', '1');
+      p.setAttribute('cx', String(510 + i*9));
+      p.setAttribute('cy', String(575 - i*5));
+    });
+    await animate(850, t => {
+      const eased = t*t*(3-2*t);
+      pillReach.setAttribute('transform', 'translate(0 ' + (230 - 230*eased) + ')');
+      pillTaking.setAttribute('transform', 'translate(' + (0 - 5*eased) + ' ' + (-8*eased) + ')');
       setHead(0, -2*eased, 0);
     });
-    await sleep(700);
     mouthOpen.style.opacity = '1';
     mouthTongue.style.opacity = '1';
-    await animate(2200, t => {
+
+    // The handful reaches the open mouth; the pills disappear as they enter, like swallowing.
+    await animate(650, t => {
       const eased = t*t*(3-2*t);
-      pill1.setAttribute('cx', String(490 + 1*eased));
-      pill1.setAttribute('cy', String(570 - 225*eased));
-      pill2.setAttribute('cx', String(516 - 12*eased));
-      pill2.setAttribute('cy', String(582 - 238*eased));
-      pill3.setAttribute('cx', String(538 - 27*eased));
-      pill3.setAttribute('cy', String(566 - 218*eased));
-      pillReach.setAttribute('transform', 'translate(' + (-24 - 10*eased) + ' ' + (18 - 38*eased) + ')');
+      pill1.setAttribute('cx', String(510 + 8*eased));
+      pill1.setAttribute('cy', String(575 - 185*eased));
+      pill2.setAttribute('cx', String(519 + 4*eased));
+      pill2.setAttribute('cy', String(570 - 190*eased));
+      pill3.setAttribute('cx', String(528 - 2*eased));
+      pill3.setAttribute('cy', String(565 - 185*eased));
+      // Fade each tablet right as it reaches the mouth, rather than leaving it floating.
+      [pill1, pill2, pill3].forEach((p, i) => {
+        const arrival = Math.max(0, Math.min(1, (eased - (0.55 + i*0.08)) / 0.22));
+        p.setAttribute('opacity', String(1-arrival));
+      });
+      pillReach.setAttribute('transform', 'translate(0 ' + (-10*eased) + ')');
       setHead(0, -2 - 3*eased, 0);
     });
-    await sleep(1200);
-    await animate(1100, t => {
-      const opacity = 1-t;
-      pill1.setAttribute('opacity', String(opacity));
-      pill2.setAttribute('opacity', String(opacity));
-      pill3.setAttribute('opacity', String(opacity));
-      mouthTongue.style.opacity = String(opacity);
-      pillReach.style.opacity = String(1 - .35*t);
+    [pill1, pill2, pill3].forEach(p => p.setAttribute('opacity', '0'));
+    pillTaking.removeAttribute('transform');
+    await sleep(250);
+    // Brief swallowing motion, then the mouth closes and the hand drops away.
+    await animate(420, t => {
       setHead(0, -5 + 5*t, 0);
+      mouthOpen.style.opacity = String(1-t);
+      mouthTongue.style.opacity = String(1-t);
+      pillReach.setAttribute('transform', 'translate(0 ' + (-10 + 18*t) + ')');
     });
-    mouthOpen.style.opacity = '0';
     pillReach.style.opacity = '0';
     pillTaking.style.opacity = '0';
+    whitePills.style.opacity = '0';
     await sleep(500);
     busy = false;
     button.textContent = 'KONIEC';
