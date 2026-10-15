@@ -85,14 +85,18 @@ svg{display:block;width:100%;height:100%}
       <path d="M0 561 Q480 586 980 561 M0 625 Q490 649 980 625 M0 699 Q490 719 980 699" fill="none" stroke="#8a6048" stroke-width="3" opacity=".35"/>
       <path d="M80 583 Q260 601 410 591 M625 595 Q785 607 925 584" fill="none" stroke="#1f1717" stroke-width="4" opacity=".5"/>
       <!-- one neat, straight line of flour -->
-      <g id="flourLine">
+      <mask id="flourEraseMask" maskUnits="userSpaceOnUse" x="250" y="520" width="500" height="45">
+        <rect x="250" y="520" width="500" height="45" fill="white"/>
+        <rect id="eraseMask" x="250" y="520" width="0" height="45" fill="black"/>
+      </mask>
+      <g id="flourLine" mask="url(#flourEraseMask)">
       <ellipse cx="491" cy="544" rx="240" ry="15" fill="#e9dfce" opacity=".12" filter="url(#shadow)"/>
       <path d="M275 541 Q390 537 491 540 Q605 543 707 539" fill="none" stroke="#f4eee2" stroke-width="9" stroke-linecap="round" opacity=".96"/>
       <path d="M279 539 Q390 536 491 538 Q603 540 703 537" fill="none" stroke="#fffaf0" stroke-width="3" stroke-linecap="round" opacity=".9"/>
       <g fill="#f7f1e7" opacity=".82"><circle cx="325" cy="536" r="2"/><circle cx="371" cy="544" r="1.7"/><circle cx="438" cy="535" r="1.6"/><circle cx="528" cy="544" r="1.8"/><circle cx="600" cy="535" r="1.7"/><circle cx="665" cy="541" r="1.5"/></g>
       </g>
-      <!-- small rolled paper beside the line -->
-      <g id="paperRoll" transform="translate(754 520) rotate(-13)">
+      <!-- upright rolled paper, kept attached to Koks's nose during the action -->
+      <g id="paperRoll" transform="translate(754 520) rotate(90)">
         <ellipse cx="3" cy="14" rx="36" ry="10" fill="#100d0e" opacity=".45"/>
         <rect x="-32" y="-1" width="65" height="15" rx="7.5" fill="url(#paper)" stroke="#a69b8e" stroke-width="2"/>
         <ellipse cx="-30" cy="6.5" rx="6" ry="7.5" fill="#ded4c4" stroke="#9f9487" stroke-width="1.5"/>
@@ -117,65 +121,73 @@ svg{display:block;width:100%;height:100%}
   const paper = document.getElementById('paperRoll');
   const head = document.getElementById('koksHead');
   const flour = document.getElementById('flourLine');
-  const svg = document.querySelector('.scene svg');
-  if (!button || !paper || !flour || !head || !svg) return;
+  const eraseMask = document.getElementById('eraseMask');
+  if (!button || !paper || !flour || !head || !eraseMask) return;
+
   let busy = false;
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-  function movePaper(fromX, fromY, toX, toY, fromR, toR, duration) {
+
+  function animate(duration, update) {
     return new Promise(resolve => {
       const start = performance.now();
       function tick(now) {
         const t = Math.min(1, (now - start) / duration);
         const eased = t * t * (3 - 2 * t);
-        const x = fromX + (toX - fromX) * eased;
-        const y = fromY + (toY - fromY) * eased;
-        const r = fromR + (toR - fromR) * eased;
-        paper.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + r + ')');
-        if (t < 1) requestAnimationFrame(tick); else resolve();
+        update(eased);
+        if (t < 1) requestAnimationFrame(tick);
+        else resolve();
       }
       requestAnimationFrame(tick);
     });
   }
-  function moveHead(fromX, fromY, toX, toY, fromR, toR, duration) {
-    return new Promise(resolve => {
-      const start = performance.now();
-      function tick(now) {
-        const t = Math.min(1, (now - start) / duration);
-        const eased = t * t * (3 - 2 * t);
-        const x = fromX + (toX - fromX) * eased;
-        const y = fromY + (toY - fromY) * eased;
-        const r = fromR + (toR - fromR) * eased;
-        head.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + r + ' 490 300)');
-        if (t < 1) requestAnimationFrame(tick); else resolve();
-      }
-      requestAnimationFrame(tick);
-    });
+
+  function setHead(x, y, angle) {
+    head.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + angle + ' 490 300)');
   }
+
+  function setPaper(x, y) {
+    paper.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(90)');
+  }
+
   button.addEventListener('click', async function () {
     if (busy) return;
     busy = true;
     button.disabled = true;
     button.textContent = 'KOKS W AKCJI…';
+
+    // Reset the scene so the animation can be replayed.
     flour.style.opacity = '1';
     paper.style.opacity = '1';
-    head.setAttribute('transform', '');
-    await movePaper(754, 520, 494, 300, -13, 0, 700);
-    await sleep(250);
-    await Promise.all([
-      moveHead(0, 0, 42, 150, 0, 12, 850),
-      movePaper(494, 300, 504, 530, 0, -4, 850)
-    ]);
-    await movePaper(504, 530, 704, 538, -4, 0, 1300);
-    await new Promise(resolve => {
-      const start = performance.now();
-      function fade(now) {
-        const t = Math.min(1, (now - start) / 500);
-        flour.style.opacity = String(1 - t);
-        if (t < 1) requestAnimationFrame(fade); else resolve();
-      }
-      requestAnimationFrame(fade);
+    eraseMask.setAttribute('width', '0');
+    eraseMask.setAttribute('x', '250');
+    setHead(0, 0, 0);
+    setPaper(754, 520);
+
+    // Lift the upright roll to the nose, then lean down toward the tabletop.
+    await animate(650, t => {
+      setPaper(754 + (532 - 754) * t, 520 + (560 - 520) * t);
     });
-    await moveHead(42, 150, 0, 0, 12, 0, 700);
+    await sleep(120);
+    await animate(850, t => {
+      setHead(42 * t, 225 * t, 12 * t);
+      setPaper(532, 560);
+    });
+
+    // Keep the roll vertical at the nose and erase only the flour it passes over.
+    await animate(1900, t => {
+      const x = 532 + (704 - 532) * t;
+      const headX = 42 + (214 - 42) * t;
+      setHead(headX, 225, 12);
+      setPaper(x, 560);
+      eraseMask.setAttribute('width', String(Math.max(0, x - 250)));
+    });
+
+    await sleep(180);
+    await animate(700, t => {
+      setHead(214 * (1 - t), 225 * (1 - t), 12 * (1 - t));
+      setPaper(704 + (754 - 704) * t, 560 + (520 - 560) * t);
+    });
+
     button.disabled = false;
     button.textContent = 'ZAPIERDOL PASA';
     busy = false;
