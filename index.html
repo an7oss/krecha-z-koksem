@@ -260,7 +260,7 @@ svg{display:block;width:100%;height:100%}
     bottleSmoke.setAttribute('transform', 'rotate(0)');
 
     // Szybkie, energiczne potrząsanie butelką; dym i woda wizualnie się mieszają.
-    await animate(850, t => {
+    await animate(1050, t => {
       const shakeY = Math.sin(t * Math.PI * 12) * 27;
       const shakeX = Math.sin(t * Math.PI * 6) * 7;
       const angle = Math.sin(t * Math.PI * 12) * 17;
@@ -274,7 +274,7 @@ svg{display:block;width:100%;height:100%}
     });
 
     // Postać unosi butelkę; oba dłonie pozostają widoczne, a plastik lekko się ugina.
-    await animate(450, t => {
+    await animate(550, t => {
       const x = 550 - 3*t, y = 405 - 5*t, angle = -28;
       bottle.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + angle + ') scale(' + (1 - .035*Math.sin(t*Math.PI)) + ' 1)');
       bottleHand.setAttribute('transform', 'translate(' + (x-4) + ' ' + (y+2) + ') rotate(' + angle + ')');
@@ -283,7 +283,7 @@ svg{display:block;width:100%;height:100%}
     });
 
     // Duży, stylizowany obłok dymu po geście postaci.
-    await animate(800, t => {
+    await animate(1050, t => {
       exhaleSmoke.setAttribute('opacity', String(t));
       exhaleSmoke.setAttribute('transform', 'translate(' + (12*t) + ' ' + (-7*t) + ') scale(' + (0.65 + 0.75*t) + ')');
       bottleSmoke.setAttribute('opacity', String(1 - .7*t));
