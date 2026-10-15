@@ -25,9 +25,33 @@ svg{display:block;width:100%;height:100%}
 .grain{position:absolute;inset:0;opacity:.13;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");mix-blend-mode:screen}
 @media(max-width:560px){.page{padding:18px 12px 22px}.top{margin-bottom:14px}.tag{font-size:8px;padding:8px}.scene{aspect-ratio:.73/1;min-height:0;max-height:none}.caption{flex-direction:column;gap:12px}.status{margin-top:1px}.caption p{font-size:13px}}
 @media(min-width:561px) and (max-height:650px){.scene{min-height:300px;max-height:62svh}}
+
+/* Cinematic opening title */
+#studio-intro{position:fixed;inset:0;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;opacity:1;transition:opacity .55s ease;pointer-events:all;font-family:Georgia,"Times New Roman",serif}
+#studio-intro.is-ending{opacity:0;pointer-events:none}
+#studio-intro .intro-inner{width:min(92vw,900px);text-align:center;padding:24px}
+#studio-intro .studio-credit{font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-size:clamp(12px,2.5vw,19px);font-weight:500;letter-spacing:.18em;line-height:1.5;opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
+#studio-intro .studio-credit.visible{opacity:1;transform:translateY(0)}
+#studio-intro .intro-title{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;column-gap:.27em;row-gap:.1em;margin-top:26px;font-size:clamp(30px,7.2vw,76px);font-weight:700;letter-spacing:.045em;line-height:1.05}
+#studio-intro .intro-word{display:inline-block;opacity:0;transform:translateY(14px);filter:blur(4px);transition:opacity .42s ease,transform .42s ease,filter .42s ease}
+#studio-intro .intro-word.visible{opacity:1;transform:translateY(0);filter:blur(0)}
+@media(prefers-reduced-motion:reduce){#studio-intro,#studio-intro .studio-credit,#studio-intro .intro-word{transition:none}}
+
 </style>
 </head>
 <body>
+
+  <div id="studio-intro" role="presentation" aria-label="Studio Żeromskiego prezentuje: Bestia z Kopernika">
+    <div class="intro-inner">
+      <div class="studio-credit">STUDIO ŻEROMSKIEGO PREZENTUJE…</div>
+      <div class="intro-title" aria-label="BESTIA Z KOPERNIKA">
+        <span class="intro-word">BESTIA</span>
+        <span class="intro-word">Z</span>
+        <span class="intro-word">KOPERNIKA</span>
+      </div>
+    </div>
+  </div>
+
 <main class="page">
   <header class="top">
     <div class="brand">BESTIA <span>Z KOPERNIKA</span></div>
@@ -829,6 +853,38 @@ svg{display:block;width:100%;height:100%}
     stage = 1;
     busy = false;
   });
+})();
+</script>
+
+
+<script>
+(function(){
+  const intro = document.getElementById('studio-intro');
+  if (!intro) return;
+  const credit = intro.querySelector('.studio-credit');
+  const words = Array.from(intro.querySelectorAll('.intro-word'));
+  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+  async function runStudioIntro(){
+    await wait(180);
+    credit.classList.add('visible');
+    await wait(1450);
+    credit.style.opacity = '0';
+    credit.style.transform = 'translateY(-6px)';
+    await wait(170);
+    for (const word of words) {
+      word.classList.add('visible');
+      await wait(680);
+    }
+    await wait(650);
+    intro.classList.add('is-ending');
+    await wait(600);
+    intro.remove();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runStudioIntro, {once:true});
+  } else {
+    runStudioIntro();
+  }
 })();
 </script>
 
