@@ -56,6 +56,7 @@ svg{display:block;width:100%;height:100%}
       <path d="M296 760 L310 506 Q323 430 386 397 Q438 372 491 375 Q550 372 600 399 Q660 430 674 509 L693 760Z" fill="url(#hood)" stroke="#494148" stroke-width="3"/>
       <path d="M385 411 Q410 365 490 362 Q570 366 598 414 L561 493 Q525 520 491 521 Q450 516 421 491Z" fill="#17171c" stroke="#51474b" stroke-width="4"/>
       <path d="M420 408 Q452 433 490 434 Q530 431 562 408" fill="none" stroke="#5a4d50" stroke-width="4" opacity=".6"/>
+      <g id="koksHead">
       <!-- neck -->
       <path d="M448 344 L447 401 Q490 434 531 400 L526 344Z" fill="url(#skin)"/>
       <!-- head -->
@@ -71,6 +72,7 @@ svg{display:block;width:100%;height:100%}
       <path d="M490 264 L479 298 Q489 307 502 298" stroke="#805244" stroke-width="5" stroke-linecap="round" fill="none"/>
       <path d="M463 326 Q491 338 520 324" stroke="#4a2929" stroke-width="6" stroke-linecap="round" fill="none"/>
       <path d="M454 336 Q491 353 527 335" stroke="#d09579" stroke-width="3" fill="none" opacity=".55"/>
+      </g>
       <!-- arms resting near the table -->
       <path d="M340 457 Q371 432 405 456 L445 547 Q450 574 429 587 Q408 596 391 572 L342 516Z" fill="#28252b" stroke="#51474a" stroke-width="3"/>
       <path d="M633 457 Q600 433 574 456 L541 547 Q536 574 556 587 Q577 596 594 572 L637 516Z" fill="#28252b" stroke="#51474a" stroke-width="3"/>
@@ -113,9 +115,10 @@ svg{display:block;width:100%;height:100%}
 (function () {
   const button = document.getElementById('startAction');
   const paper = document.getElementById('paperRoll');
+  const head = document.getElementById('koksHead');
   const flour = document.getElementById('flourLine');
   const svg = document.querySelector('.scene svg');
-  if (!button || !paper || !flour || !svg) return;
+  if (!button || !paper || !flour || !head || !svg) return;
   let busy = false;
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
   function movePaper(fromX, fromY, toX, toY, fromR, toR, duration) {
@@ -133,6 +136,21 @@ svg{display:block;width:100%;height:100%}
       requestAnimationFrame(tick);
     });
   }
+  function moveHead(fromX, fromY, toX, toY, fromR, toR, duration) {
+    return new Promise(resolve => {
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = t * t * (3 - 2 * t);
+        const x = fromX + (toX - fromX) * eased;
+        const y = fromY + (toY - fromY) * eased;
+        const r = fromR + (toR - fromR) * eased;
+        head.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + r + ' 490 300)');
+        if (t < 1) requestAnimationFrame(tick); else resolve();
+      }
+      requestAnimationFrame(tick);
+    });
+  }
   button.addEventListener('click', async function () {
     if (busy) return;
     busy = true;
@@ -140,9 +158,13 @@ svg{display:block;width:100%;height:100%}
     button.textContent = 'KOKS W AKCJI…';
     flour.style.opacity = '1';
     paper.style.opacity = '1';
+    head.setAttribute('transform', '');
     await movePaper(754, 520, 494, 300, -13, 0, 700);
     await sleep(250);
-    await movePaper(494, 300, 504, 530, 0, -4, 850);
+    await Promise.all([
+      moveHead(0, 0, 42, 150, 0, 12, 850),
+      movePaper(494, 300, 504, 530, 0, -4, 850)
+    ]);
     await movePaper(504, 530, 704, 538, -4, 0, 1300);
     await new Promise(resolve => {
       const start = performance.now();
@@ -153,6 +175,7 @@ svg{display:block;width:100%;height:100%}
       }
       requestAnimationFrame(fade);
     });
+    await moveHead(42, 150, 0, 0, 12, 0, 700);
     button.disabled = false;
     button.textContent = 'ZAPIERDOL PASA';
     busy = false;
