@@ -131,15 +131,6 @@ svg{display:block;width:100%;height:100%}
         <path d="M490 318 Q496 324 492 330" fill="none" stroke="#9e2e35" stroke-width="4" stroke-linecap="round"/>
       </g>
       </g>
-      <!-- FOX pepper spray canister secured to the hoodie, visible throughout the scene -->
-      <g id="foxSpray" transform="translate(354 448) rotate(-13)">
-        <path d="M-13 4 Q-19 7 -18 18 L-16 57 Q-15 64 -8 64 L9 64 Q16 63 16 56 L17 17 Q17 8 11 4Z" fill="#19191c" stroke="#b7b5b8" stroke-width="2"/>
-        <rect x="-12" y="-3" width="24" height="12" rx="3" fill="#242428" stroke="#a9a7aa" stroke-width="2"/>
-        <rect x="-7" y="-12" width="14" height="11" rx="2" fill="#b9b9bc" stroke="#242428" stroke-width="2"/>
-        <rect x="-13" y="22" width="27" height="20" rx="2" fill="#c72f32"/>
-        <text x="0" y="36" font-size="12" font-weight="950" text-anchor="middle" fill="#fff">FOX</text>
-        <path d="M-20 12 Q-27 8 -28 17 L-27 53 Q-26 59 -19 57" fill="none" stroke="#1b1a1e" stroke-width="5"/>
-      </g>
       <!-- arms resting near the table -->
       <path d="M292 458 Q337 426 382 456 L438 547 Q450 574 429 587 Q408 596 391 572 L310 518Z" fill="url(#hood)" stroke="#88858a" stroke-width="3"/>
       <path d="M688 458 Q644 426 600 456 L543 547 Q536 574 556 587 Q577 596 594 572 L670 518Z" fill="url(#hood)" stroke="#88858a" stroke-width="3"/>
@@ -293,23 +284,8 @@ svg{display:block;width:100%;height:100%}
           <path d="M-25 360 Q35 345 93 312 L185 282" fill="none" stroke="#242329" stroke-width="48" stroke-linecap="round"/>
           <path d="M-25 350 Q35 335 93 302 L185 272" fill="none" stroke="#666269" stroke-width="4" stroke-linecap="round" opacity=".65"/>
           <path d="M160 268 L187 255 Q199 251 207 261 L216 273 L207 290 L181 299Z" fill="url(#skin)" stroke="#70493f" stroke-width="3"/>
-          <g transform="translate(198 264) rotate(-20)">
-            <rect x="-9" y="-25" width="20" height="43" rx="5" fill="#19191c" stroke="#bdb9bf" stroke-width="2"/>
-            <rect x="-12" y="-32" width="26" height="9" rx="3" fill="#c72f32"/>
-            <text x="1" y="-14" font-size="8" text-anchor="middle" font-weight="900" fill="#fff">FOX</text>
-            <path d="M11 -28 L20 -32 L20 -22 L12 -20Z" fill="#bbb8bd"/>
-          </g>
         </g>
-        <g id="sprayMist" opacity="0">
-          <!-- A thick, unmistakable jet from the FOX nozzle straight across Hubert's eyes -->
-          <path d="M218 236 Q300 245 365 265 T492 285" fill="none" stroke="#d9edf2" stroke-width="42" stroke-linecap="round" opacity=".58"/>
-          <path d="M218 236 Q300 245 365 265 T492 285" fill="none" stroke="#f0faff" stroke-width="27" stroke-linecap="round" opacity=".82"/>
-          <path d="M218 236 Q300 245 365 265 T492 285" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity=".98"/>
-          <!-- Large billowing pepper-spray cloud around both eyes -->
-          <path d="M463 276 C447 256 466 241 486 253 C492 230 520 233 526 254 C549 246 567 266 552 283 C572 300 552 321 532 311 C518 333 490 319 492 303 C468 315 449 297 463 276Z" fill="#e9f6fa" opacity=".78"/>
-          <path d="M474 277 C465 263 482 251 494 263 C506 245 526 259 520 274 C542 272 548 291 531 300 C520 316 498 305 500 291 C482 301 468 290 474 277Z" fill="#ffffff" opacity=".76"/>
-          <g fill="#f7fcff" opacity=".95"><circle cx="454" cy="260" r="7"/><circle cx="467" cy="244" r="5"/><circle cx="489" cy="238" r="6"/><circle cx="527" cy="243" r="7"/><circle cx="550" cy="263" r="5"/><circle cx="560" cy="286" r="7"/><circle cx="542" cy="311" r="6"/><circle cx="515" cy="326" r="5"/><circle cx="482" cy="314" r="7"/><circle cx="456" cy="296" r="5"/></g>
-        </g>
+        <g id="sprayMist" opacity="0" display="none"></g>
         <g id="boardArm" transform="translate(0 -320)">
           <path d="M760 30 Q740 78 705 115 L665 160" fill="none" stroke="#25242a" stroke-width="47" stroke-linecap="round"/>
           <path d="M665 160 Q649 164 643 176 L659 195 L685 183 L692 169Z" fill="url(#skin)" stroke="#70493f" stroke-width="3"/>
@@ -394,9 +370,9 @@ svg{display:block;width:100%;height:100%}
             <path d="M818 650 H846" stroke="#e6e0d8" stroke-width="3" stroke-linecap="round"/>
           </g>
           <g transform="rotate(5 490 430)">
-            <rect x="355" y="405" width="270" height="55" rx="13" fill="#f3e8d8" stroke="#6b4b45" stroke-width="4"/>
+            <rect x="320" y="402" width="340" height="60" rx="13" fill="#f3e8d8" stroke="#6b4b45" stroke-width="4"/>
             <text x="490" y="427" font-size="15" font-weight="1000" text-anchor="middle" fill="#292126">OSTATNIE SŁOWA:</text>
-            <text x="490" y="448" font-size="18" font-weight="1000" text-anchor="middle" fill="#b62e31">„JEBAĆ KAŚKE KURWE DZIWKE CIPOZWISKE!!”</text>
+            <text x="490" y="448" font-size="18" font-weight="1000" text-anchor="middle" fill="#b62e31">„KAŚKA KURWA HUBERT CWEL”</text>
           </g>
         </g>
         <!-- osobny, klasyczny duch — nie kopia twarzy bohatera -->
@@ -410,9 +386,9 @@ svg{display:block;width:100%;height:100%}
           <circle cx="420" cy="345" r="5" fill="#fff" opacity=".9"/><circle cx="557" cy="362" r="4" fill="#fff" opacity=".9"/><circle cx="456" cy="310" r="4" fill="#fff" opacity=".9"/>
         </g>
         <g id="deathCaption" opacity="0">
-          <rect x="120" y="20" width="740" height="70" rx="16" fill="#130f16" stroke="#c73a37" stroke-width="4"/>
-          <text x="490" y="49" text-anchor="middle" font-size="19" font-weight="1000" letter-spacing="2" fill="#fff1df">OSTATNIE SŁOWA SEBY:</text>
-          <text x="490" y="74" text-anchor="middle" font-size="19" font-weight="1000" fill="#ffb9b3">JEBAĆ KAŚKE KURWE DZIWKE CIPOZWISKE!!</text>
+          <rect x="55" y="16" width="870" height="78" rx="16" fill="#130f16" stroke="#c73a37" stroke-width="4"/>
+          <text x="490" y="49" text-anchor="middle" font-size="18" font-weight="1000" letter-spacing="2" fill="#fff1df">OSTATNIE SŁOWA SEBY:</text>
+          <text x="490" y="76" text-anchor="middle" font-size="25" font-weight="1000" letter-spacing=".5" fill="#ffb9b3">KAŚKA KURWA HUBERT CWEL</text>
         </g>
         <!-- wyraźna, duża chmura u góry i czytelny napis NIEBO -->
         <g id="heavenLight" opacity="0">
@@ -518,7 +494,7 @@ svg{display:block;width:100%;height:100%}
   const rightCurtain = document.getElementById('rightCurtain');
   const heavenLight = document.getElementById('heavenLight');
   const memorialNotice = document.getElementById('memorialNotice');
-  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade || !finalScene || !finalGhost || !heavenLight || !memorialNotice || !deathGags || !deathCaption || !theaterCurtain || !leftCurtain || !rightCurtain) return;
+  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade || !finalScene || !finalGhost || !heavenLight || !memorialNotice || !deathGags || !deathCaption || !theaterCurtain || !leftCurtain || !rightCurtain) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
   let busy = false;
@@ -734,50 +710,44 @@ svg{display:block;width:100%;height:100%}
     hubertCaption.style.opacity = '1';
     await sleep(650);
 
-    // Arms enter from both sides; Hubert notices the commotion.
+    // Obie ręce wchodzą z dwóch stron — bez gazu.
     await animate(450, t => {
       sprayArm.setAttribute('transform', 'translate(' + (-240 + 240*t) + ' 0)');
       fistArm.setAttribute('transform', 'translate(' + (250 - 250*t) + ' 0)');
       setHead(-5*t, -2*t, -2*t);
     });
-    // Keep a clearly visible spray cloud hanging in front of his face.
-    sprayMist.style.opacity = '1';
+    // Chwila napięcia, po czym pięć sekund komediowego naparzania z obu stron.
     await animate(520, t => {
-      sprayMist.setAttribute('transform', 'translate(' + (2*Math.sin(t*5)) + ' ' + (2*Math.sin(t*7)) + ') scale(' + (1 + .08*t) + ')');
-      setHead(-9 - 5*t, -4*t, -4*t);
+      setHead(-3 - 3*t, -2*t, -2*t);
       mouthOpen.style.opacity = String(.2 + .8*t);
       reactionLines.style.opacity = String(t);
     });
-    // Five-second slapstick barrage: spray stays visible while repeated board swats
-    // and punches make his head recoil more strongly. No blood or graphic injury.
+    // Five-second slapstick barrage: repeated hits from left and right, no gas.
     await animate(5000, t => {
       const ms = t * 5000;
       const beat = Math.floor(ms / 560);
       const phase = (ms % 560) / 560;
       const hit = Math.max(0, 1 - phase * 3.2);
       const recoil = Math.sin(phase * Math.PI) * (8 + beat * 2.2);
-      if (beat % 3 === 0) {
-        boardArm.setAttribute('transform', 'translate(0 ' + (-320 + 355 * Math.min(1, phase * 2.4)) + ') rotate(' + (16 * Math.min(1, phase * 2.4)) + ' 660 170)');
-        fistArm.setAttribute('transform', 'translate(0 0)');
-      } else if (beat % 3 === 1) {
+      const jab = Math.min(1, phase * 3.4);
+      // Naprzemienne, wyraźne uderzenia z lewej i prawej strony.
+      if (beat % 2 === 0) {
+        sprayArm.setAttribute('transform', 'translate(' + (-240 + 205*jab) + ' ' + (Math.sin(phase*Math.PI)*8) + ')');
+        fistArm.setAttribute('transform', 'translate(250 0)');
         boardArm.setAttribute('transform', 'translate(0 -320)');
-        fistArm.setAttribute('transform', 'translate(' + (-250 + 120 * Math.min(1, phase * 2.8)) + ' 0)');
       } else {
-        boardArm.setAttribute('transform', 'translate(0 ' + (-320 + 330 * Math.min(1, phase * 2.5)) + ') rotate(' + (10 * Math.min(1, phase * 2.5) + 5) + ' 660 170)');
-        fistArm.setAttribute('transform', 'translate(' + (-250 + 85 * Math.min(1, phase * 2.5)) + ' 0)');
+        sprayArm.setAttribute('transform', 'translate(-240 0)');
+        fistArm.setAttribute('transform', 'translate(' + (250 - 205*jab) + ' ' + (-Math.sin(phase*Math.PI)*8) + ')');
+        boardArm.setAttribute('transform', 'translate(0 ' + (-320 + 355 * jab) + ') rotate(' + (12*jab) + ' 660 170)');
       }
       const direction = beat % 2 === 0 ? -1 : 1;
       setHead(direction * (5 + recoil + hit * (9 + beat * 1.4)), -2 + hit * (4 + beat), direction * (2 + hit * (5 + beat)));
       impactStars.style.opacity = hit > .55 ? '1' : '0';
       impactStars.setAttribute('transform', 'translate(' + (direction * 10 * hit) + ' ' + (-6 * hit) + ') scale(' + (1 + .22 * hit) + ')');
       reactionLines.style.opacity = hit > .2 ? '1' : '.35';
-      // The mist billows and lingers instead of disappearing after the first puff.
-      sprayMist.style.opacity = String(.7 + .3 * Math.abs(Math.sin(ms / 230)));
-      sprayMist.setAttribute('transform', 'translate(' + (3 * Math.sin(ms / 180)) + ' ' + (4 * Math.sin(ms / 145)) + ') scale(' + (1.02 + .12 * Math.abs(Math.sin(ms / 210))) + ')');
       mouthOpen.style.opacity = String(.55 + .45 * Math.abs(Math.sin(ms / 190)));
     });
     impactStars.style.opacity = '0';
-    sprayMist.style.opacity = '0';
     await animate(220, t => {
       setHead(-8 * (1-t), 3 * (1-t), -3 * (1-t));
       mouthOpen.style.opacity = String(1-t);
