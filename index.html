@@ -178,6 +178,42 @@ svg{display:block;width:100%;height:100%}
         <path d="M532 294 C514 277 536 265 550 277 C563 260 583 277 573 293 C590 306 570 325 555 316 C542 331 525 315 532 294Z" opacity=".7"/>
         <circle cx="565" cy="270" r="14" opacity=".5"/><circle cx="580" cy="281" r="9" opacity=".38"/><circle cx="501" cy="286" r="10" opacity=".4"/>
       </g>
+      <!-- Third scene: fictional medicine props and white pills -->
+      <g id="medicineProps" opacity="0">
+        <g transform="translate(415 557) rotate(-7)">
+          <rect x="-67" y="-31" width="134" height="62" rx="4" fill="#d9d5cb" stroke="#f2eee5" stroke-width="2"/>
+          <rect x="-61" y="-25" width="122" height="18" fill="#9d252c"/>
+          <text x="0" y="-12" font-size="15" font-weight="950" text-anchor="middle" fill="#fff7ee">TICODIN</text>
+          <path d="M-61 1 H61" stroke="#8f8a82" stroke-width="1.5"/>
+          <text x="0" y="19" font-size="10" font-weight="800" text-anchor="middle" fill="#383237">LEK • OSTRZEŻENIE</text>
+        </g>
+        <g transform="translate(570 557) rotate(6)">
+          <rect x="-57" y="-30" width="114" height="60" rx="4" fill="#e5e2dc" stroke="#f7f3ec" stroke-width="2"/>
+          <rect x="-52" y="-25" width="104" height="17" fill="#2e4b68"/>
+          <text x="0" y="-12" font-size="16" font-weight="950" text-anchor="middle" fill="#fff">OKSY</text>
+          <path d="M-52 0 H52" stroke="#9b9994" stroke-width="1.5"/>
+          <text x="0" y="18" font-size="9" font-weight="800" text-anchor="middle" fill="#383237">NIE DO ZABAWY</text>
+        </g>
+        <g transform="translate(737 557) rotate(-4)">
+          <rect x="-72" y="-30" width="144" height="60" rx="4" fill="#d7c5aa" stroke="#f1e2ca" stroke-width="2"/>
+          <rect x="-66" y="-24" width="132" height="17" fill="#563a30"/>
+          <text x="0" y="-12" font-size="10" font-weight="950" text-anchor="middle" fill="#fff4e4">SPECJALNOŚĆ</text>
+          <text x="0" y="7" font-size="10" font-weight="950" text-anchor="middle" fill="#352522">OD KASI PICZ</text>
+          <path d="M-61 16 H61" stroke="#947e66" stroke-width="1.5"/>
+        </g>
+      </g>
+      <g id="whitePills" opacity="0">
+        <ellipse cx="488" cy="586" rx="12" ry="7" transform="rotate(-22 488 586)" fill="#fffdf6" stroke="#b9b5ae" stroke-width="1.5"/>
+        <ellipse cx="514" cy="593" rx="11" ry="7" transform="rotate(18 514 593)" fill="#f7f5ee" stroke="#b9b5ae" stroke-width="1.5"/>
+        <ellipse cx="541" cy="582" rx="12" ry="7" transform="rotate(-35 541 582)" fill="#fffdf8" stroke="#b9b5ae" stroke-width="1.5"/>
+        <ellipse cx="559" cy="600" rx="10" ry="6" transform="rotate(28 559 600)" fill="#f7f5ee" stroke="#b9b5ae" stroke-width="1.5"/>
+        <ellipse cx="527" cy="570" rx="11" ry="6.5" transform="rotate(5 527 570)" fill="#fffdf6" stroke="#b9b5ae" stroke-width="1.5"/>
+      </g>
+      <g id="pillTaking" opacity="0">
+        <ellipse id="pill1" cx="490" cy="570" rx="10" ry="6" transform="rotate(-20 490 570)" fill="#fffdf6" stroke="#b9b5ae" stroke-width="1.5"/>
+        <ellipse id="pill2" cx="516" cy="582" rx="10" ry="6" transform="rotate(15 516 582)" fill="#fffdf6" stroke="#b9b5ae" stroke-width="1.5"/>
+        <ellipse id="pill3" cx="538" cy="566" rx="10" ry="6" transform="rotate(-15 538 566)" fill="#fffdf6" stroke="#b9b5ae" stroke-width="1.5"/>
+      </g>
       <!-- subtle warm pool of light over the tabletop -->
       <ellipse cx="490" cy="530" rx="340" ry="74" fill="#d39a6a" opacity=".08"/>
     </svg>
@@ -201,13 +237,19 @@ svg{display:block;width:100%;height:100%}
   const sceneProps = document.getElementById('sceneProps');
   const bottleSmoke = document.getElementById('bottleSmoke');
   const exhaleSmoke = document.getElementById('exhaleSmoke');
+  const medicineProps = document.getElementById('medicineProps');
+  const whitePills = document.getElementById('whitePills');
+  const pillTaking = document.getElementById('pillTaking');
+  const pill1 = document.getElementById('pill1');
+  const pill2 = document.getElementById('pill2');
+  const pill3 = document.getElementById('pill3');
   const tag = document.querySelector('.tag');
   const scene = document.querySelector('.scene');
-  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke) return;
+  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
   let busy = false;
-  let completed = false;
+  let stage = 0;
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   function animate(duration, update) {
@@ -306,14 +348,68 @@ svg{display:block;width:100%;height:100%}
     });
     await sleep(120);
     busy = false;
+    button.disabled = false;
+    button.textContent = 'LECZ SIĘ';
+    button.style.display = '';
+    stage = 2;
+  }
+
+  async function playPillsScene() {
+    busy = true;
+    button.disabled = true;
+    button.style.display = 'none';
+    if (tag) tag.textContent = 'Prototyp • scena 03';
+
+    await animate(420, t => {
+      const opacity = 1 - t;
+      bottle.style.opacity = String(opacity);
+      sceneProps.style.opacity = String(opacity);
+      exhaleSmoke.style.opacity = String(opacity);
+      bottleSmoke.style.opacity = String(opacity);
+    });
+    bottle.style.display = 'none';
+    sceneProps.style.display = 'none';
+    exhaleSmoke.style.display = 'none';
+    medicineProps.style.opacity = '1';
+    whitePills.style.opacity = '1';
+    pillTaking.style.opacity = '1';
+
+    // Brief, stylized depiction of pill misuse; no dosage or how-to details.
+    await animate(650, t => {
+      setHead(0, -3*t, 0);
+      pill1.setAttribute('cx', String(490 + 4*t));
+      pill1.setAttribute('cy', String(570 - 90*t));
+      pill2.setAttribute('cx', String(516 - 5*t));
+      pill2.setAttribute('cy', String(582 - 105*t));
+      pill3.setAttribute('cx', String(538 - 13*t));
+      pill3.setAttribute('cy', String(566 - 83*t));
+    });
+    await animate(500, t => {
+      const opacity = 1 - t;
+      pill1.setAttribute('opacity', String(opacity));
+      pill2.setAttribute('opacity', String(opacity));
+      pill3.setAttribute('opacity', String(opacity));
+      setHead(0, -3 - 4*t, 0);
+    });
+    pillTaking.style.opacity = '0';
+    await sleep(180);
+    busy = false;
+    button.textContent = 'KONIEC';
+    button.style.display = '';
+    button.disabled = true;
   }
 
   button.addEventListener('click', async function () {
     if (busy) return;
-    if (completed) {
+    if (stage === 1) {
       await playSecondScene();
       return;
     }
+    if (stage === 2) {
+      await playPillsScene();
+      return;
+    }
+    if (stage >= 3) return;
     busy = true;
     button.disabled = true;
     button.style.display = 'none';
@@ -367,7 +463,7 @@ svg{display:block;width:100%;height:100%}
     button.disabled = false;
     button.textContent = 'ZAJEB TŁOKA';
     button.style.display = '';
-    completed = true;
+    stage = 1;
     busy = false;
   });
 })();
