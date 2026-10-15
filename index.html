@@ -95,6 +95,17 @@ svg{display:block;width:100%;height:100%}
       <path id="mouthOpen" d="M445 345 Q490 375 535 345 Q524 385 490 385 Q456 380 445 345Z" fill="#291719" stroke="#7b433c" stroke-width="4" opacity="0"/>
       <path id="mouthTongue" d="M468 373 Q490 365 512 373" fill="none" stroke="#b96866" stroke-width="5" stroke-linecap="round" opacity="0"/>
       <path d="M438 360 Q490 382 542 360" stroke="#d09579" stroke-width="4" fill="none" opacity=".55"/>
+      <!-- Post-scene aftermath: stylized small blood marks, cuts and extra bruising -->
+      <g id="aftermathMarks" opacity="0" pointer-events="none">
+        <ellipse cx="430" cy="282" rx="39" ry="21" fill="#392b48" opacity=".78" transform="rotate(-5 430 282)"/>
+        <ellipse cx="550" cy="281" rx="36" ry="20" fill="#57405a" opacity=".72" transform="rotate(5 550 281)"/>
+        <path d="M402 296 Q413 301 426 298 M535 294 Q551 300 566 294" fill="none" stroke="#6b343c" stroke-width="5" stroke-linecap="round"/>
+        <path d="M471 315 Q465 326 469 334 M510 316 Q516 327 511 335" fill="none" stroke="#8d3035" stroke-width="4" stroke-linecap="round"/>
+        <path d="M468 334 Q465 342 469 348 M511 335 Q515 343 512 348" fill="none" stroke="#a83338" stroke-width="3" stroke-linecap="round"/>
+        <path d="M449 350 Q462 355 473 352 M514 352 Q526 357 537 350" fill="none" stroke="#7f252d" stroke-width="4" stroke-linecap="round"/>
+        <path d="M454 326 l-12 7 M456 331 l-9 9 M533 323 l13 5" fill="none" stroke="#8c343a" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M490 318 Q496 324 492 330" fill="none" stroke="#9e2e35" stroke-width="4" stroke-linecap="round"/>
+      </g>
       </g>
       <!-- FOX pepper spray canister secured to the hoodie, visible throughout the scene -->
       <g id="foxSpray" transform="translate(354 448) rotate(-13)">
@@ -302,6 +313,7 @@ svg{display:block;width:100%;height:100%}
       </g>
       <!-- subtle warm pool of light over the tabletop -->
       <ellipse cx="490" cy="530" rx="340" ry="74" fill="#d39a6a" opacity=".08"/>
+      <rect id="transitionFade" x="0" y="0" width="980" height="760" fill="#08070a" opacity="0" pointer-events="none"/>
     </svg>
     <div class="grain"></div>
   </section>
@@ -334,7 +346,7 @@ svg{display:block;width:100%;height:100%}
   const mouthTongue = document.getElementById('mouthTongue');
   const tag = document.querySelector('.tag');
   const scene = document.querySelector('.scene');
-  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption) return;
+  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
   let busy = false;
@@ -599,17 +611,24 @@ svg{display:block;width:100%;height:100%}
       mouthOpen.style.opacity = String(1-t);
       reactionLines.style.opacity = String(1-t);
     });
-    // Arms retreat; Hubert stays seated, dazed, but unharmed on-screen.
+    // Fade to black briefly, then reveal Hubert's cartoonish aftermath.
     await animate(450, t => {
       sprayArm.setAttribute('transform', 'translate(' + (240*t) + ' 0)');
       boardArm.setAttribute('transform', 'translate(0 ' + (-320 - 80*t) + ')');
       fistArm.setAttribute('transform', 'translate(' + (-250*t) + ' 0)');
       setHead(0, 0, 0);
       reactionLines.style.opacity = '0';
+      transitionFade.setAttribute('opacity', String(.72*t));
+    });
+    aftermathMarks.style.opacity = '1';
+    await sleep(180);
+    await animate(650, t => {
+      transitionFade.setAttribute('opacity', String(.72*(1-t)));
+      setHead(-2*(1-t), 1*(1-t), -1*(1-t));
     });
     hubertCaption.textContent = 'KONIEC ZABAWY';
     hubertCaption.style.opacity = '1';
-    button.textContent = 'KONIEC';
+    button.textContent = 'POWIEDZ, ŻE ZAJebałeś W SZAFĘ I IDŹ SPAĆ';
     button.style.display = '';
     button.disabled = true;
     busy = false;
