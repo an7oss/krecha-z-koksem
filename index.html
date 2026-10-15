@@ -14,7 +14,7 @@ body{min-height:100svh;overflow-x:hidden}
 .top{width:min(100%,980px);display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
 .brand{font-weight:950;letter-spacing:.075em;font-size:clamp(19px,4vw,30px);line-height:1.05}
 .brand span{display:block;color:var(--red);margin-top:5px}
-.tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#b6aeb0;border:1px solid #554448;padding:9px 11px;border-radius:99px;white-space:nowrap}
+.tag{font-size:clamp(15px,2.2vw,20px);font-weight:950;letter-spacing:.12em;text-transform:uppercase;color:#e7d6d4;border:1px solid #77545a;padding:12px 16px;border-radius:99px;white-space:nowrap;text-shadow:0 0 14px #c73a3755}
 .scene{position:relative;width:min(100%,980px);aspect-ratio:1.18/1;min-height:390px;max-height:72svh;border:1px solid #4b3d3d;border-radius:18px;overflow:hidden;background:#1b1719;box-shadow:0 28px 90px #0009}
 .scene:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#0b09092b 0%,transparent 30%,#0808091f 64%,#080809a8 100%),radial-gradient(ellipse at center,transparent 42%,#0505078a 100%)}
 svg{display:block;width:100%;height:100%}
@@ -23,7 +23,7 @@ svg{display:block;width:100%;height:100%}
 .caption p{margin:7px 0 0;color:var(--muted);font-size:14px;line-height:1.55;max-width:540px}
 .status{flex:none;border-left:2px solid var(--red);padding:3px 0 3px 12px;color:#d8b6b4;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
 .grain{position:absolute;inset:0;opacity:.13;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");mix-blend-mode:screen}
-@media(max-width:560px){.page{padding:18px 12px 22px}.top{margin-bottom:14px}.tag{font-size:8px;padding:8px}.scene{aspect-ratio:.73/1;min-height:0;max-height:none}.caption{flex-direction:column;gap:12px}.status{margin-top:1px}.caption p{font-size:13px}}
+@media(max-width:560px){.page{padding:18px 12px 22px}.top{margin-bottom:14px}.tag{font-size:15px;padding:10px 13px;letter-spacing:.1em}.scene{aspect-ratio:.73/1;min-height:0;max-height:none}.caption{flex-direction:column;gap:12px}.status{margin-top:1px}.caption p{font-size:13px}}
 @media(min-width:561px) and (max-height:650px){.scene{min-height:300px;max-height:62svh}}
 
 /* Cinematic opening title */
@@ -357,17 +357,47 @@ svg{display:block;width:100%;height:100%}
         <circle cx="386" cy="612" r="6" fill="#b7b45e"/><circle cx="476" cy="620" r="8" fill="#8a8c45"/><circle cx="502" cy="595" r="5" fill="#c5c16c"/>
         <path d="M330 577 l-17 -8 M530 628 l19 8 M371 646 l-8 10" stroke="#6e693b" stroke-width="7" stroke-linecap="round"/>
         <!-- postać leży bezwładnie na łóżku -->
-        <g id="sleepingBody" transform="rotate(-3 490 520)">
-          <path d="M285 552 Q270 506 315 484 Q362 462 420 484 L614 512 Q681 524 724 557 L696 615 Q650 634 595 608 L405 574 Q350 591 308 580Z" fill="#45434a" stroke="#8a8588" stroke-width="5"/>
-          <path d="M320 493 Q363 477 410 495 L433 526 Q382 541 333 527Z" fill="#6d6b71" stroke="#9b9698" stroke-width="3"/>
-          <path d="M405 503 Q476 493 551 527 L537 553 Q469 537 418 541Z" fill="#2e2d33"/>
-          <path d="M350 530 Q387 518 422 540 L445 562 Q409 580 372 564Z" fill="#b57e69" stroke="#80574e" stroke-width="4"/>
-          <ellipse cx="332" cy="515" rx="68" ry="59" fill="#b9806c" stroke="#795047" stroke-width="5" transform="rotate(-14 332 515)"/>
-          <ellipse cx="306" cy="509" rx="11" ry="18" fill="#9d6657" stroke="#795047" stroke-width="3"/>
-          <path d="M279 504 Q300 496 321 506 M279 521 Q300 528 320 519" fill="none" stroke="#55404b" stroke-width="8" stroke-linecap="round"/>
-          <path d="M300 542 Q326 552 350 539" fill="none" stroke="#4d292d" stroke-width="7" stroke-linecap="round"/>
-          <path d="M300 489 Q322 480 344 491" fill="none" stroke="#d6a08a" stroke-width="4" opacity=".7"/>
-          <path d="M458 543 Q480 553 504 546 M558 557 Q580 568 604 560" fill="none" stroke="#9e9697" stroke-width="5" opacity=".6"/>
+        <g id="sleepingBody" transform="rotate(-2 490 550)">
+          <!-- absurdly huge body: the hoodie and belly visibly spill over both sides of the bed -->
+          <path d="M205 557 Q165 512 202 477 Q245 440 325 459 Q393 438 470 466 Q557 451 641 480 Q733 478 790 520 Q835 550 807 614 Q783 658 719 646 L616 623 Q529 665 437 635 L304 651 Q225 647 205 607Z" fill="#3e3c43" stroke="#969096" stroke-width="7"/>
+          <path d="M250 492 Q310 457 373 483 L402 532 Q338 551 269 529Z" fill="#69666e" stroke="#a39da3" stroke-width="4"/>
+          <path d="M390 484 Q478 457 576 499 L611 559 Q512 578 416 548Z" fill="#2c2a31" stroke="#68616b" stroke-width="4"/>
+          <path d="M584 503 Q677 479 755 526 L770 579 Q707 613 633 580Z" fill="#504d55" stroke="#85808a" stroke-width="4"/>
+          <!-- massive belly bulging out from the stretched hoodie -->
+          <path d="M295 535 Q340 505 402 532 Q466 557 516 540 Q585 518 647 548 Q704 577 681 625 Q648 665 578 646 Q511 633 456 658 Q384 675 332 638 Q287 609 295 535Z" fill="#a96f5d" stroke="#70483f" stroke-width="6"/>
+          <path d="M322 564 Q381 548 438 573 M341 592 Q407 578 463 602 M476 576 Q540 553 605 580 M469 614 Q538 594 612 614" fill="none" stroke="#6e453f" stroke-width="9" stroke-linecap="round" opacity=".8"/>
+          <path d="M328 557 Q386 544 432 563 M351 586 Q406 574 454 594 M491 569 Q546 551 595 572" fill="none" stroke="#d39a83" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+          <!-- face squashed into pillow, cheeks and double chin -->
+          <ellipse cx="273" cy="508" rx="76" ry="66" fill="#b9806c" stroke="#795047" stroke-width="6" transform="rotate(-14 273 508)"/>
+          <path d="M219 519 Q269 546 319 517 Q314 555 273 562 Q237 555 219 519Z" fill="#9e6657" stroke="#795047" stroke-width="4"/>
+          <ellipse cx="229" cy="506" rx="12" ry="19" fill="#9d6657" stroke="#795047" stroke-width="3"/>
+          <path d="M231 502 l19 9 -19 9 M278 503 l18 9 -18 9" fill="none" stroke="#382b3b" stroke-width="7" stroke-linecap="round"/>
+          <path d="M243 540 Q270 548 295 536" fill="none" stroke="#4d292d" stroke-width="8" stroke-linecap="round"/>
+          <path d="M241 484 Q270 474 298 489" fill="none" stroke="#d6a08a" stroke-width="5" opacity=".7"/>
+          <!-- arm buried under his own bulk -->
+          <path d="M660 582 Q713 573 752 600 L788 630 Q783 650 758 644 L688 619Z" fill="#b57e69" stroke="#80574e" stroke-width="4"/>
+          <path d="M383 625 Q412 635 445 627 M535 636 Q563 647 594 635" fill="none" stroke="#9e9697" stroke-width="5" opacity=".7"/>
+        </g>
+        <!-- final absurd details: flies, delivery app and a tiny dying phone -->
+        <g id="deathGags" opacity="0">
+          <g stroke="#17151b" stroke-width="5" stroke-linecap="round" fill="none">
+            <path d="M140 416 q-12 -14 -24 0 q12 14 24 0 M140 416 l14 -8 M140 416 l14 8"/>
+            <path d="M840 429 q-12 -14 -24 0 q12 14 24 0 M840 429 l14 -8 M840 429 l14 8"/>
+            <path d="M170 382 q-12 -14 -24 0 q12 14 24 0 M170 382 l14 -8 M170 382 l14 8"/>
+          </g>
+          <g transform="rotate(-8 835 580)">
+            <rect x="790" y="532" width="83" height="130" rx="12" fill="#111116" stroke="#aaa2a5" stroke-width="5"/>
+            <rect x="798" y="546" width="67" height="94" rx="4" fill="#d8cfc4"/>
+            <text x="831" y="568" font-size="12" font-weight="1000" text-anchor="middle" fill="#30272b">KROKI</text>
+            <text x="831" y="602" font-size="25" font-weight="1000" text-anchor="middle" fill="#bd302e">12</text>
+            <text x="831" y="623" font-size="9" font-weight="900" text-anchor="middle" fill="#30272b">CEL: 10 000</text>
+            <path d="M818 650 H846" stroke="#e6e0d8" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <g transform="rotate(5 490 430)">
+            <rect x="355" y="405" width="270" height="55" rx="13" fill="#f3e8d8" stroke="#6b4b45" stroke-width="4"/>
+            <text x="490" y="427" font-size="15" font-weight="1000" text-anchor="middle" fill="#292126">OSTATNIE SŁOWA:</text>
+            <text x="490" y="448" font-size="18" font-weight="1000" text-anchor="middle" fill="#b62e31">„JESZCZE JEDEN KĘS”</text>
+          </g>
         </g>
         <!-- osobny, klasyczny duch — nie kopia twarzy bohatera -->
         <g id="finalGhost" transform="translate(0 0)" opacity="0">
@@ -378,6 +408,11 @@ svg{display:block;width:100%;height:100%}
           <path d="M473 402 Q490 409 507 402" fill="none" stroke="#51475f" stroke-width="4" stroke-linecap="round"/>
           <path d="M430 438 Q405 452 395 427 M550 437 Q576 450 586 425" fill="none" stroke="#f4f1ff" stroke-width="13" stroke-linecap="round"/>
           <circle cx="420" cy="345" r="5" fill="#fff" opacity=".9"/><circle cx="557" cy="362" r="4" fill="#fff" opacity=".9"/><circle cx="456" cy="310" r="4" fill="#fff" opacity=".9"/>
+        </g>
+        <g id="deathCaption" opacity="0">
+          <rect x="185" y="20" width="610" height="66" rx="16" fill="#130f16" stroke="#c73a37" stroke-width="4"/>
+          <text x="490" y="47" text-anchor="middle" font-size="19" font-weight="1000" letter-spacing="2" fill="#fff1df">SYSTEM: SEBA ZAKOŃCZYŁ PRACĘ</text>
+          <text x="490" y="70" text-anchor="middle" font-size="15" font-weight="900" fill="#e6a6a2">POWÓD: PRZECIĄŻENIE KEBABEM</text>
         </g>
         <!-- wyraźna, duża chmura u góry i czytelny napis NIEBO -->
         <g id="heavenLight" opacity="0">
@@ -454,9 +489,11 @@ svg{display:block;width:100%;height:100%}
   const scene = document.querySelector('.scene');
   const finalScene = document.getElementById('finalScene');
   const finalGhost = document.getElementById('finalGhost');
+  const deathGags = document.getElementById('deathGags');
+  const deathCaption = document.getElementById('deathCaption');
   const heavenLight = document.getElementById('heavenLight');
   const memorialNotice = document.getElementById('memorialNotice');
-  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade || !finalScene || !finalGhost || !heavenLight || !memorialNotice) return;
+  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade || !finalScene || !finalGhost || !heavenLight || !memorialNotice || !deathGags || !deathCaption) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
   let busy = false;
@@ -756,14 +793,30 @@ svg{display:block;width:100%;height:100%}
     finalGhost.setAttribute('opacity', '0');
     heavenLight.setAttribute('opacity', '0');
     memorialNotice.setAttribute('opacity', '0');
+    deathGags.setAttribute('opacity', '0');
+    deathCaption.setAttribute('opacity', '0');
     await sleep(250);
     await animate(850, t => transitionFade.setAttribute('opacity', String(1-t)));
+    // Najpierw absurdalny komunikat i wizualny gag, potem dusza wystrzeliwuje do nieba.
+    deathGags.setAttribute('opacity', '1');
+    await animate(1150, t => {
+      deathCaption.setAttribute('opacity', String(Math.min(1, t*2)));
+      const shake = Math.sin(t*38) * (1-t) * 5;
+      document.getElementById('sleepingBody').setAttribute('transform', 'translate(' + shake + ' ' + (Math.sin(t*24)*2) + ') rotate(' + (-2 + Math.sin(t*20)*1.5) + ' 490 550)');
+      transitionFade.setAttribute('opacity', String(.08 + Math.abs(Math.sin(t*16))*.09));
+    });
+    await animate(500, t => {
+      deathCaption.setAttribute('opacity', String(1-t));
+      transitionFade.setAttribute('opacity', String(.15 + t*.45));
+    });
+    transitionFade.setAttribute('opacity', '0');
     // Dusza odrywa się od łóżka i leci w stronę dużej chmury.
     await animate(3900, t => {
       const eased = t*t*(3-2*t);
       finalGhost.setAttribute('opacity', String(.95 - .2*eased));
       finalGhost.setAttribute('transform', 'translate(' + (Math.sin(t*8)*5) + ' ' + (-390*eased) + ') scale(' + (1 - .12*eased) + ')');
       heavenLight.setAttribute('opacity', String(Math.min(1, t*1.8)));
+      deathGags.setAttribute('opacity', String(1-t));
       transitionFade.setAttribute('opacity', '0');
     });
     // Chwilowe zanikanie, potem kościelna klepsydra z nekrologiem.
