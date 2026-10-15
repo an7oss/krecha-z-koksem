@@ -261,15 +261,14 @@ svg{display:block;width:100%;height:100%}
 
     // Szybkie, energiczne potrząsanie butelką; dym i woda wizualnie się mieszają.
     await animate(1050, t => {
-      const shakeY = Math.sin(t * Math.PI * 12) * 27;
-      const shakeX = Math.sin(t * Math.PI * 6) * 7;
-      const angle = Math.sin(t * Math.PI * 12) * 17;
-      const x = 575 + shakeX;
+      // Mocne, czytelne potrząsanie wyłącznie góra–dół: bez ruchu na boki i bez przechylania.
+      const shakeY = Math.sin(t * Math.PI * 12) * 34;
+      const x = 575;
       const y = 420 + shakeY;
-      bottle.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + angle + ')');
-      bottleHand.setAttribute('transform', 'translate(' + (x-4) + ' ' + (y+2) + ') rotate(' + angle + ')');
-      bottleHand2.setAttribute('transform', 'translate(' + (x+4) + ' ' + (y+2) + ') rotate(' + angle + ')');
-      bottleSmoke.setAttribute('transform', 'rotate(' + (Math.sin(t * Math.PI * 12) * 24) + ')');
+      bottle.setAttribute('transform', 'translate(' + x + ' ' + y + ')');
+      bottleHand.setAttribute('transform', 'translate(' + (x-4) + ' ' + (y+2) + ')');
+      bottleHand2.setAttribute('transform', 'translate(' + (x+4) + ' ' + (y+2) + ')');
+      bottleSmoke.setAttribute('transform', 'translate(0 ' + (Math.sin(t * Math.PI * 12) * 9) + ')');
       setHead(0, -2 * t, 0);
     });
 
@@ -300,7 +299,9 @@ svg{display:block;width:100%;height:100%}
     // Dopiero po odłożeniu butelki pojawia się duży obłok wydychanego dymu.
     await animate(1050, t => {
       exhaleSmoke.setAttribute('opacity', String(t));
-      exhaleSmoke.setAttribute('transform', 'translate(' + (12*t) + ' ' + (-7*t) + ') scale(' + (0.65 + 0.75*t) + ')');
+      // Ogromna chmura rozlewa się od ust na dużą część kadru.
+      const smokeScale = 1 + 8.5*t;
+      exhaleSmoke.setAttribute('transform', 'translate(' + (540 - 540*smokeScale + 12*t) + ' ' + (300 - 300*smokeScale - 18*t) + ') scale(' + smokeScale + ')');
       bottleSmoke.setAttribute('opacity', String(1 - .7*t));
     });
     await sleep(120);
