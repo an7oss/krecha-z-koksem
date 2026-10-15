@@ -84,24 +84,34 @@ svg{display:block;width:100%;height:100%}
       <path d="M0 538 Q489 566 980 538 L980 760 L0 760Z" fill="url(#wood)"/>
       <path d="M0 561 Q480 586 980 561 M0 625 Q490 649 980 625 M0 699 Q490 719 980 699" fill="none" stroke="#8a6048" stroke-width="3" opacity=".35"/>
       <path d="M80 583 Q260 601 410 591 M625 595 Q785 607 925 584" fill="none" stroke="#1f1717" stroke-width="4" opacity=".5"/>
-      <!-- one neat, straight line of flour -->
-      <mask id="flourEraseMask" maskUnits="userSpaceOnUse" x="250" y="520" width="500" height="45">
-        <rect x="250" y="520" width="500" height="45" fill="white"/>
-        <rect id="eraseMask" x="532" y="520" width="0" height="45" fill="black"/>
+      <!-- loose flour scattered near the back edge of the tabletop -->
+      <mask id="flourEraseMask" maskUnits="userSpaceOnUse" x="390" y="490" width="230" height="45">
+        <rect x="390" y="490" width="230" height="45" fill="white"/>
+        <rect id="eraseMask" x="490" y="490" width="0" height="45" fill="black"/>
       </mask>
       <g id="flourLine" mask="url(#flourEraseMask)">
-      <ellipse cx="491" cy="544" rx="240" ry="15" fill="#e9dfce" opacity=".12" filter="url(#shadow)"/>
-      <path d="M275 541 Q390 537 491 540 Q605 543 707 539" fill="none" stroke="#f4eee2" stroke-width="9" stroke-linecap="round" opacity=".96"/>
-      <path d="M279 539 Q390 536 491 538 Q603 540 703 537" fill="none" stroke="#fffaf0" stroke-width="3" stroke-linecap="round" opacity=".9"/>
-      <g fill="#f7f1e7" opacity=".82"><circle cx="325" cy="536" r="2"/><circle cx="371" cy="544" r="1.7"/><circle cx="438" cy="535" r="1.6"/><circle cx="528" cy="544" r="1.8"/><circle cx="600" cy="535" r="1.7"/><circle cx="665" cy="541" r="1.5"/></g>
+        <ellipse cx="493" cy="508" rx="105" ry="10" fill="#e9dfce" opacity=".13" filter="url(#shadow)"/>
+        <path d="M405 509 Q426 503 445 508 T485 507 T526 509 T568 505 T590 508" fill="none" stroke="#f4eee2" stroke-width="7" stroke-linecap="round" opacity=".95"/>
+        <path d="M411 506 Q431 502 447 506 T486 505 T526 507 T565 503 T584 506" fill="none" stroke="#fffaf0" stroke-width="2.5" stroke-linecap="round" opacity=".88"/>
+        <g fill="#f7f1e7" opacity=".9">
+          <circle cx="416" cy="503" r="2.2"/><circle cx="429" cy="512" r="1.7"/><circle cx="441" cy="505" r="2.1"/>
+          <circle cx="458" cy="511" r="1.8"/><circle cx="471" cy="502" r="1.5"/><circle cx="483" cy="509" r="2"/>
+          <circle cx="499" cy="504" r="1.8"/><circle cx="512" cy="512" r="2.1"/><circle cx="529" cy="503" r="1.6"/>
+          <circle cx="543" cy="508" r="2.2"/><circle cx="559" cy="501" r="1.7"/><circle cx="574" cy="510" r="1.9"/>
+          <circle cx="586" cy="504" r="1.5"/>
+        </g>
       </g>
-      <!-- upright rolled paper, kept attached to Koks's nose during the action -->
-      <g id="paperRoll" transform="translate(754 520) rotate(90)">
-        <ellipse cx="3" cy="14" rx="36" ry="10" fill="#100d0e" opacity=".45"/>
+      <!-- paper roll and the hand that picks it up -->
+      <g id="paperRoll" transform="translate(640 500) rotate(90)">
+        <ellipse cx="3" cy="14" rx="36" ry="10" fill="#100d0e" opacity=".32"/>
         <rect x="-32" y="-1" width="65" height="15" rx="7.5" fill="url(#paper)" stroke="#a69b8e" stroke-width="2"/>
         <ellipse cx="-30" cy="6.5" rx="6" ry="7.5" fill="#ded4c4" stroke="#9f9487" stroke-width="1.5"/>
         <ellipse cx="30" cy="6.5" rx="5" ry="6.5" fill="#a89d90"/>
         <path d="M-14 0 L-13 12 M7 0 L8 12" stroke="#b9ad9d" stroke-width="1.5" opacity=".8"/>
+      </g>
+      <g id="paperHand" transform="translate(640 500)">
+        <path d="M-78 77 Q-53 53 -28 28 L-7 9 Q2 1 10 8 Q15 13 8 20 L-3 32 Q12 25 19 33 Q23 40 14 46 L4 53 Q14 52 17 60 Q18 67 8 72 L-5 80 Q-16 90 -31 94 L-62 103Z" fill="url(#skin)" stroke="#744c40" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M-1 17 Q7 20 12 28 M2 39 Q10 43 14 46 M-7 58 Q1 63 8 64" fill="none" stroke="#d59a7d" stroke-width="2.5" stroke-linecap="round"/>
       </g>
       <!-- subtle warm pool of light over the tabletop -->
       <ellipse cx="490" cy="530" rx="340" ry="74" fill="#d39a6a" opacity=".08"/>
@@ -119,13 +129,13 @@ svg{display:block;width:100%;height:100%}
 (function () {
   const button = document.getElementById('startAction');
   const paper = document.getElementById('paperRoll');
+  const hand = document.getElementById('paperHand');
   const head = document.getElementById('koksHead');
   const flour = document.getElementById('flourLine');
   const eraseMask = document.getElementById('eraseMask');
-  if (!button || !paper || !flour || !head || !eraseMask) return;
+  if (!button || !paper || !hand || !flour || !head || !eraseMask) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
-
   let busy = false;
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -142,13 +152,12 @@ svg{display:block;width:100%;height:100%}
       requestAnimationFrame(tick);
     });
   }
-
   function setHead(x, y, angle) {
     head.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(' + angle + ' 490 300)');
   }
-
-  function setPaper(x, y) {
+  function setProps(x, y) {
     paper.setAttribute('transform', 'translate(' + x + ' ' + y + ') rotate(90)');
+    hand.setAttribute('transform', 'translate(' + x + ' ' + y + ')');
   }
 
   button.addEventListener('click', async function () {
@@ -157,47 +166,52 @@ svg{display:block;width:100%;height:100%}
     button.disabled = true;
     button.textContent = 'KOKS W AKCJI…';
 
-    // Bring the head in front of the tabletop during the leaning animation.
-    // Keep it behind the flour and paper so the props remain visible.
+    // Put the moving head in front of the tabletop; keep powder and props above it.
     flour.parentNode.insertBefore(head, flour);
-
-    // Reset the scene so the animation can be replayed.
     flour.style.opacity = '1';
     paper.style.opacity = '1';
+    hand.style.opacity = '1';
     eraseMask.setAttribute('width', '0');
-    eraseMask.setAttribute('x', '532');
+    eraseMask.setAttribute('x', '490');
     setHead(0, 0, 0);
-    setPaper(754, 520);
+    setProps(640, 500);
 
-    // Lift the upright roll to the nose, then lean down toward the tabletop.
+    // Reach for the roll, visibly grip it, then bring it toward the face.
+    await animate(550, t => {
+      setProps(640 + (605 - 640) * t, 500 + (510 - 500) * t);
+    });
+    await sleep(100);
     await animate(650, t => {
-      setPaper(754 + (532 - 754) * t, 520 + (560 - 520) * t);
+      setProps(605 + (490 - 605) * t, 510 + (475 - 510) * t);
+      setHead(0, 8 * t, 0);
     });
-    await sleep(120);
+
+    // The character slowly slumps down to the tabletop, keeping the roll at the nose.
+    await animate(1050, t => {
+      const dy = 8 + 137 * t;
+      const dx = 70 * t;
+      setHead(dx, dy, 5 * t);
+      setProps(490 + dx, 475 + 137 * t);
+    });
+
+    // Hold at the tabletop edge for a moment; the scattered powder fades under the roll.
     await animate(850, t => {
-      setHead(42 * t, 225 * t, 12 * t);
-      setPaper(532, 560);
+      const dx = 70 + 8 * t;
+      setHead(dx, 145, 5);
+      setProps(490 + dx, 612);
+      eraseMask.setAttribute('width', String(90 + 78 * t));
+    });
+    await sleep(250);
+
+    // Pull back and sit upright again so the scene can be replayed.
+    await animate(800, t => {
+      setHead(78 * (1 - t), 145 * (1 - t), 5 * (1 - t));
+      setProps(568 + (640 - 568) * t, 612 + (500 - 612) * t);
+      eraseMask.setAttribute('width', String(168 * (1 - t)));
     });
 
-    // Keep the roll vertical at the nose and erase only the flour it passes over.
-    await animate(1900, t => {
-      const x = 532 + (704 - 532) * t;
-      const headX = 42 + (214 - 42) * t;
-      setHead(headX, 225, 12);
-      setPaper(x, 560);
-      eraseMask.setAttribute('width', String(Math.max(0, x - 532)));
-    });
-
-    await sleep(180);
-    await animate(700, t => {
-      setHead(214 * (1 - t), 225 * (1 - t), 12 * (1 - t));
-      setPaper(704 + (754 - 704) * t, 560 + (520 - 560) * t);
-    });
-
-    // Restore the original layer order for the idle scene.
     if (headNextSibling && headNextSibling.parentNode === headParent) headParent.insertBefore(head, headNextSibling);
     else headParent.appendChild(head);
-
     button.disabled = false;
     button.textContent = 'ZAPIERDOL PASA';
     busy = false;
