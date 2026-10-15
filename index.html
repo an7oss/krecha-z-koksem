@@ -123,6 +123,8 @@ svg{display:block;width:100%;height:100%}
   const flour = document.getElementById('flourLine');
   const eraseMask = document.getElementById('eraseMask');
   if (!button || !paper || !flour || !head || !eraseMask) return;
+  const headParent = head.parentNode;
+  const headNextSibling = head.nextSibling;
 
   let busy = false;
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -154,6 +156,10 @@ svg{display:block;width:100%;height:100%}
     busy = true;
     button.disabled = true;
     button.textContent = 'KOKS W AKCJI…';
+
+    // Bring the head in front of the tabletop during the leaning animation.
+    // Keep it behind the flour and paper so the props remain visible.
+    flour.parentNode.insertBefore(head, flour);
 
     // Reset the scene so the animation can be replayed.
     flour.style.opacity = '1';
@@ -187,6 +193,10 @@ svg{display:block;width:100%;height:100%}
       setHead(214 * (1 - t), 225 * (1 - t), 12 * (1 - t));
       setPaper(704 + (754 - 704) * t, 560 + (520 - 560) * t);
     });
+
+    // Restore the original layer order for the idle scene.
+    if (headNextSibling && headNextSibling.parentNode === headParent) headParent.insertBefore(head, headNextSibling);
+    else headParent.appendChild(head);
 
     button.disabled = false;
     button.textContent = 'ZAPIERDOL PASA';
