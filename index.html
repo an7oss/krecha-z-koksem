@@ -345,27 +345,53 @@ svg{display:block;width:100%;height:100%}
           <path d="M300 489 Q322 480 344 491" fill="none" stroke="#d6a08a" stroke-width="4" opacity=".7"/>
           <path d="M458 543 Q480 553 504 546 M558 557 Q580 568 604 560" fill="none" stroke="#9e9697" stroke-width="5" opacity=".6"/>
         </g>
-        <!-- duch tej samej postaci unosi się pionowo ku górze -->
+        <!-- osobny, klasyczny duch — nie kopia twarzy bohatera -->
         <g id="finalGhost" transform="translate(0 0)" opacity="0">
-          <ellipse cx="500" cy="445" rx="86" ry="21" fill="#d9e8ff" opacity=".18" filter="url(#blur)"/>
-          <path d="M433 471 Q419 430 435 394 L424 367 Q421 344 442 336 Q465 328 479 348 Q499 335 517 348 Q542 343 554 365 Q566 389 547 407 L561 468 Q542 489 520 467 L500 487 L480 468 Q455 490 433 471Z" fill="#cbd9f4" opacity=".42" stroke="#eef5ff" stroke-width="5"/>
-          <ellipse cx="489" cy="370" rx="59" ry="58" fill="#d9e6ff" opacity=".55" stroke="#f3f7ff" stroke-width="4"/>
-          <ellipse cx="469" cy="369" rx="7" ry="10" fill="#5a536c" opacity=".8"/><ellipse cx="511" cy="369" rx="7" ry="10" fill="#5a536c" opacity=".8"/>
-          <path d="M470 394 Q490 402 510 394" fill="none" stroke="#655d75" stroke-width="5" stroke-linecap="round"/>
-          <path d="M446 422 Q490 443 534 422" fill="none" stroke="#f4f7ff" stroke-width="4" opacity=".8"/>
-          <path d="M433 455 Q410 444 399 424 M554 453 Q578 440 590 419" fill="none" stroke="#dbe7ff" stroke-width="12" stroke-linecap="round" opacity=".7"/>
+          <ellipse cx="490" cy="454" rx="115" ry="30" fill="#f6f3ff" opacity=".22" filter="url(#blur)"/>
+          <path d="M432 453 Q402 428 422 395 Q400 365 426 337 Q438 319 458 330 Q482 300 507 327 Q540 315 553 348 Q581 369 557 397 Q576 427 547 453 L535 480 Q519 461 503 483 Q485 464 466 484 Q449 463 432 483Z" fill="#f4f1ff" opacity=".94" stroke="#fffdfd" stroke-width="5"/>
+          <path d="M430 398 Q453 416 474 399 M510 399 Q532 415 551 397" fill="none" stroke="#d6d2e5" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+          <ellipse cx="464" cy="375" rx="7" ry="10" fill="#51475f"/><ellipse cx="518" cy="375" rx="7" ry="10" fill="#51475f"/>
+          <path d="M473 402 Q490 409 507 402" fill="none" stroke="#51475f" stroke-width="4" stroke-linecap="round"/>
+          <path d="M430 438 Q405 452 395 427 M550 437 Q576 450 586 425" fill="none" stroke="#f4f1ff" stroke-width="13" stroke-linecap="round"/>
+          <circle cx="420" cy="345" r="5" fill="#fff" opacity=".9"/><circle cx="557" cy="362" r="4" fill="#fff" opacity=".9"/><circle cx="456" cy="310" r="4" fill="#fff" opacity=".9"/>
         </g>
-        <!-- świetlista droga do nieba -->
+        <!-- wyraźna, duża chmura u góry i czytelny napis NIEBO -->
         <g id="heavenLight" opacity="0">
-          <path d="M490 0 L350 430 L630 430Z" fill="#f5e8ba" opacity=".12"/>
-          <path d="M490 0 L430 430 L545 430Z" fill="#fff5d5" opacity=".18"/>
-          <g fill="#f8f1d8" opacity=".9">
-            <circle cx="490" cy="55" r="4"/><circle cx="450" cy="98" r="3"/><circle cx="534" cy="130" r="4"/><circle cx="414" cy="185" r="3"/><circle cx="570" cy="220" r="3"/><circle cx="475" cy="255" r="4"/><circle cx="540" cy="302" r="2.5"/>
+          <path d="M490 0 L270 460 L710 460Z" fill="#fff0bd" opacity=".2"/>
+          <path d="M490 0 L405 460 L575 460Z" fill="#fff9e4" opacity=".28"/>
+          <g fill="#f8f1d8" opacity=".98">
+            <ellipse cx="490" cy="68" rx="150" ry="42"/>
+            <ellipse cx="400" cy="78" rx="75" ry="53"/>
+            <ellipse cx="455" cy="43" rx="78" ry="59"/>
+            <ellipse cx="527" cy="48" rx="83" ry="61"/>
+            <ellipse cx="588" cy="78" rx="73" ry="48"/>
+            <ellipse cx="490" cy="91" rx="195" ry="31"/>
           </g>
-          <g fill="#f4f0e7" opacity=".95">
-            <ellipse cx="490" cy="40" rx="83" ry="23"/><ellipse cx="445" cy="52" rx="38" ry="28"/><ellipse cx="527" cy="51" rx="43" ry="30"/>
+          <g fill="#fff" opacity=".75">
+            <circle cx="350" cy="142" r="4"/><circle cx="418" cy="176" r="3"/><circle cx="586" cy="153" r="4"/>
+            <circle cx="630" cy="202" r="3"/><circle cx="383" cy="245" r="3"/><circle cx="537" cy="280" r="4"/>
+            <circle cx="458" cy="228" r="2.5"/><circle cx="566" cy="330" r="3"/>
           </g>
-          <text x="490" y="105" text-anchor="middle" font-size="22" font-weight="950" letter-spacing="5" fill="#fff5d9">NIEBO</text>
+          <text x="490" y="163" text-anchor="middle" font-size="35" font-weight="1000" letter-spacing="7" fill="#fff8dc" stroke="#78684f" stroke-width="2" paint-order="stroke">NIEBO</text>
+        </g>
+        <!-- kościelna klepsydra / nekrolog na końcu -->
+        <g id="memorialNotice" opacity="0">
+          <rect width="980" height="760" fill="#08080b"/>
+          <rect x="155" y="58" width="670" height="644" rx="8" fill="#e8e3d7" stroke="#514a47" stroke-width="13"/>
+          <rect x="177" y="80" width="626" height="600" fill="#f5f0e5" stroke="#9b9185" stroke-width="3"/>
+          <path d="M205 111 H775 M205 654 H775" stroke="#82766d" stroke-width="3"/>
+          <text x="490" y="150" text-anchor="middle" font-size="24" font-weight="900" letter-spacing="4" fill="#302b2a">Ś.P.</text>
+          <text x="490" y="203" text-anchor="middle" font-size="39" font-weight="1000" letter-spacing="2" fill="#242020">KUBA JAREMKO</text>
+          <text x="490" y="244" text-anchor="middle" font-size="17" font-weight="800" letter-spacing="3" fill="#514a47">POKÓJ JEGO DUSZY</text>
+          <!-- klasyczna klepsydra w czarnej ramce -->
+          <path d="M410 285 H570 M410 435 H570" stroke="#2d2927" stroke-width="12" stroke-linecap="square"/>
+          <path d="M426 291 Q426 328 490 357 Q554 328 554 291 M426 429 Q426 392 490 363 Q554 392 554 429" fill="none" stroke="#2d2927" stroke-width="10" stroke-linejoin="round"/>
+          <path d="M438 300 Q440 325 490 347 Q540 325 542 300Z" fill="#a89c86"/>
+          <path d="M438 420 Q440 395 490 373 Q540 395 542 420Z" fill="#a89c86"/>
+          <path d="M475 356 L490 367 L505 356" fill="none" stroke="#7b6e5b" stroke-width="5"/>
+          <text x="490" y="492" text-anchor="middle" font-size="21" font-weight="850" letter-spacing="2" fill="#302b2a">NA ZAWSZE W PAMIĘCI</text>
+          <text x="490" y="540" text-anchor="middle" font-size="17" font-weight="700" fill="#514a47">NIECH ODPOCZYWA W POKOJU</text>
+          <text x="490" y="621" text-anchor="middle" font-size="15" font-weight="900" letter-spacing="3" fill="#625852">† † †</text>
         </g>
         <text id="finalCaption" x="490" y="720" text-anchor="middle" font-size="25" font-weight="950" letter-spacing="2" fill="#eee7d9" stroke="#17131a" stroke-width="5" paint-order="stroke">KONIEC</text>
       </g>
@@ -405,7 +431,8 @@ svg{display:block;width:100%;height:100%}
   const finalScene = document.getElementById('finalScene');
   const finalGhost = document.getElementById('finalGhost');
   const heavenLight = document.getElementById('heavenLight');
-  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade || !finalScene || !finalGhost || !heavenLight) return;
+  const memorialNotice = document.getElementById('memorialNotice');
+  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade || !finalScene || !finalGhost || !heavenLight || !memorialNotice) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
   let busy = false;
@@ -700,28 +727,26 @@ svg{display:block;width:100%;height:100%}
     button.disabled = true;
     button.style.display = 'none';
     if (tag) tag.textContent = 'Prototyp • epilog';
-    // Ekran gaśnie, a potem odsłania zupełnie nową scenę.
-    await animate(650, t => {
-      transitionFade.setAttribute('opacity', String(t));
-    });
+    await animate(650, t => transitionFade.setAttribute('opacity', String(t)));
     finalScene.setAttribute('opacity', '1');
     finalGhost.setAttribute('opacity', '0');
     heavenLight.setAttribute('opacity', '0');
+    memorialNotice.setAttribute('opacity', '0');
     await sleep(250);
-    await animate(850, t => {
-      transitionFade.setAttribute('opacity', String(1-t));
-    });
-    // Duch zaczyna unosić się pionowo z łóżka, coraz jaśniejszy, aż do światła.
-    await animate(3600, t => {
+    await animate(850, t => transitionFade.setAttribute('opacity', String(1-t)));
+    // Dusza odrywa się od łóżka i leci w stronę dużej chmury.
+    await animate(3900, t => {
       const eased = t*t*(3-2*t);
-      finalGhost.setAttribute('opacity', String(.2 + .8*eased));
-      finalGhost.setAttribute('transform', 'translate(' + (Math.sin(t*8)*5) + ' ' + (-300*eased) + ') scale(' + (1 - .08*eased) + ')');
-      heavenLight.setAttribute('opacity', String(Math.min(1, t*1.35)));
-      transitionFade.setAttribute('opacity', String(Math.max(0, (t-.82)/.18)*.38));
+      finalGhost.setAttribute('opacity', String(.95 - .2*eased));
+      finalGhost.setAttribute('transform', 'translate(' + (Math.sin(t*8)*5) + ' ' + (-390*eased) + ') scale(' + (1 - .12*eased) + ')');
+      heavenLight.setAttribute('opacity', String(Math.min(1, t*1.8)));
+      transitionFade.setAttribute('opacity', '0');
     });
-    transitionFade.setAttribute('opacity', '0');
-    const caption = document.getElementById('finalCaption');
-    if (caption) caption.textContent = 'ODLECIAŁ DO NIEBA';
+    // Chwilowe zanikanie, potem kościelna klepsydra z nekrologiem.
+    await animate(700, t => transitionFade.setAttribute('opacity', String(t)));
+    finalScene.setAttribute('opacity', '0');
+    memorialNotice.setAttribute('opacity', '1');
+    await animate(900, t => transitionFade.setAttribute('opacity', String(1-t)));
     button.textContent = 'KONIEC';
     button.style.display = '';
     button.disabled = true;
