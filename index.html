@@ -313,6 +313,62 @@ svg{display:block;width:100%;height:100%}
       </g>
       <!-- subtle warm pool of light over the tabletop -->
       <ellipse cx="490" cy="530" rx="340" ry="74" fill="#d39a6a" opacity=".08"/>
+      <g id="finalScene" opacity="0" pointer-events="none">
+        <rect width="980" height="760" fill="#111019"/>
+        <rect y="0" width="980" height="440" fill="#211b24"/>
+        <path d="M0 95H980 M0 100H980 M70 0V440 M910 0V440" stroke="#3d303b" stroke-width="5" opacity=".6"/>
+        <rect x="75" y="110" width="210" height="185" rx="8" fill="#11131b" stroke="#594953" stroke-width="12"/>
+        <rect x="91" y="126" width="178" height="153" fill="#242b38"/>
+        <path d="M180 126V279 M91 202H269" stroke="#555b6a" stroke-width="4" opacity=".55"/>
+        <ellipse cx="490" cy="650" rx="430" ry="70" fill="#050507" opacity=".75"/>
+        <!-- brudne, rozgrzebane łóżko -->
+        <path d="M105 490 Q120 445 182 448 L830 448 Q887 456 900 508 L930 687 L75 687Z" fill="#4b4144" stroke="#79676b" stroke-width="9"/>
+        <path d="M96 505 Q240 480 365 510 T635 502 T905 510 L918 669 L82 669Z" fill="#82766d"/>
+        <path d="M105 536 Q215 512 316 544 T526 535 T724 548 T907 533 L914 675 L78 675Z" fill="#5e5554"/>
+        <path d="M125 562 Q195 537 269 565 L246 604 Q185 616 130 594Z M640 548 Q730 529 800 555 L824 600 Q730 614 662 591Z" fill="#9b8d80" opacity=".8"/>
+        <path d="M160 473 Q260 460 328 485 L305 527 Q222 536 158 513Z" fill="#b0a294" stroke="#5a4e50" stroke-width="5"/>
+        <!-- plama wymiocin, pokazana kreskówkowo, bez detali -->
+        <path d="M357 588 Q382 564 414 580 Q438 555 463 579 Q497 567 515 592 Q541 615 510 633 Q477 648 435 635 Q396 650 367 626 Q345 611 357 588Z" fill="#9e9c53" opacity=".92"/>
+        <ellipse cx="424" cy="600" rx="47" ry="12" fill="#c5c16c" opacity=".65"/>
+        <circle cx="386" cy="612" r="6" fill="#b7b45e"/><circle cx="476" cy="620" r="8" fill="#8a8c45"/><circle cx="502" cy="595" r="5" fill="#c5c16c"/>
+        <path d="M330 577 l-17 -8 M530 628 l19 8 M371 646 l-8 10" stroke="#6e693b" stroke-width="7" stroke-linecap="round"/>
+        <!-- postać leży bezwładnie na łóżku -->
+        <g id="sleepingBody" transform="rotate(-3 490 520)">
+          <path d="M285 552 Q270 506 315 484 Q362 462 420 484 L614 512 Q681 524 724 557 L696 615 Q650 634 595 608 L405 574 Q350 591 308 580Z" fill="#45434a" stroke="#8a8588" stroke-width="5"/>
+          <path d="M320 493 Q363 477 410 495 L433 526 Q382 541 333 527Z" fill="#6d6b71" stroke="#9b9698" stroke-width="3"/>
+          <path d="M405 503 Q476 493 551 527 L537 553 Q469 537 418 541Z" fill="#2e2d33"/>
+          <path d="M350 530 Q387 518 422 540 L445 562 Q409 580 372 564Z" fill="#b57e69" stroke="#80574e" stroke-width="4"/>
+          <ellipse cx="332" cy="515" rx="68" ry="59" fill="#b9806c" stroke="#795047" stroke-width="5" transform="rotate(-14 332 515)"/>
+          <ellipse cx="306" cy="509" rx="11" ry="18" fill="#9d6657" stroke="#795047" stroke-width="3"/>
+          <path d="M279 504 Q300 496 321 506 M279 521 Q300 528 320 519" fill="none" stroke="#55404b" stroke-width="8" stroke-linecap="round"/>
+          <path d="M300 542 Q326 552 350 539" fill="none" stroke="#4d292d" stroke-width="7" stroke-linecap="round"/>
+          <path d="M300 489 Q322 480 344 491" fill="none" stroke="#d6a08a" stroke-width="4" opacity=".7"/>
+          <path d="M458 543 Q480 553 504 546 M558 557 Q580 568 604 560" fill="none" stroke="#9e9697" stroke-width="5" opacity=".6"/>
+        </g>
+        <!-- duch tej samej postaci unosi się pionowo ku górze -->
+        <g id="finalGhost" transform="translate(0 0)" opacity="0">
+          <ellipse cx="500" cy="445" rx="86" ry="21" fill="#d9e8ff" opacity=".18" filter="url(#blur)"/>
+          <path d="M433 471 Q419 430 435 394 L424 367 Q421 344 442 336 Q465 328 479 348 Q499 335 517 348 Q542 343 554 365 Q566 389 547 407 L561 468 Q542 489 520 467 L500 487 L480 468 Q455 490 433 471Z" fill="#cbd9f4" opacity=".42" stroke="#eef5ff" stroke-width="5"/>
+          <ellipse cx="489" cy="370" rx="59" ry="58" fill="#d9e6ff" opacity=".55" stroke="#f3f7ff" stroke-width="4"/>
+          <ellipse cx="469" cy="369" rx="7" ry="10" fill="#5a536c" opacity=".8"/><ellipse cx="511" cy="369" rx="7" ry="10" fill="#5a536c" opacity=".8"/>
+          <path d="M470 394 Q490 402 510 394" fill="none" stroke="#655d75" stroke-width="5" stroke-linecap="round"/>
+          <path d="M446 422 Q490 443 534 422" fill="none" stroke="#f4f7ff" stroke-width="4" opacity=".8"/>
+          <path d="M433 455 Q410 444 399 424 M554 453 Q578 440 590 419" fill="none" stroke="#dbe7ff" stroke-width="12" stroke-linecap="round" opacity=".7"/>
+        </g>
+        <!-- świetlista droga do nieba -->
+        <g id="heavenLight" opacity="0">
+          <path d="M490 0 L350 430 L630 430Z" fill="#f5e8ba" opacity=".12"/>
+          <path d="M490 0 L430 430 L545 430Z" fill="#fff5d5" opacity=".18"/>
+          <g fill="#f8f1d8" opacity=".9">
+            <circle cx="490" cy="55" r="4"/><circle cx="450" cy="98" r="3"/><circle cx="534" cy="130" r="4"/><circle cx="414" cy="185" r="3"/><circle cx="570" cy="220" r="3"/><circle cx="475" cy="255" r="4"/><circle cx="540" cy="302" r="2.5"/>
+          </g>
+          <g fill="#f4f0e7" opacity=".95">
+            <ellipse cx="490" cy="40" rx="83" ry="23"/><ellipse cx="445" cy="52" rx="38" ry="28"/><ellipse cx="527" cy="51" rx="43" ry="30"/>
+          </g>
+          <text x="490" y="105" text-anchor="middle" font-size="22" font-weight="950" letter-spacing="5" fill="#fff5d9">NIEBO</text>
+        </g>
+        <text id="finalCaption" x="490" y="720" text-anchor="middle" font-size="25" font-weight="950" letter-spacing="2" fill="#eee7d9" stroke="#17131a" stroke-width="5" paint-order="stroke">KONIEC</text>
+      </g>
       <rect id="transitionFade" x="0" y="0" width="980" height="760" fill="#08070a" opacity="0" pointer-events="none"/>
     </svg>
     <div class="grain"></div>
@@ -346,7 +402,10 @@ svg{display:block;width:100%;height:100%}
   const mouthTongue = document.getElementById('mouthTongue');
   const tag = document.querySelector('.tag');
   const scene = document.querySelector('.scene');
-  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade) return;
+  const finalScene = document.getElementById('finalScene');
+  const finalGhost = document.getElementById('finalGhost');
+  const heavenLight = document.getElementById('heavenLight');
+  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade || !finalScene || !finalGhost || !heavenLight) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
   let busy = false;
@@ -628,11 +687,46 @@ svg{display:block;width:100%;height:100%}
     });
     hubertCaption.textContent = 'KONIEC ZABAWY';
     hubertCaption.style.opacity = '1';
-    button.textContent = 'POWIEDZ, ŻE ZAJebałeś W SZAFĘ I IDŹ SPAĆ';
+    button.textContent = 'POWIEDZ, ŻE ZAJEBАŁEŚ W SZAFĘ I IDŹ SPAĆ';
+    button.style.display = '';
+    button.disabled = false;
+    busy = false;
+    stage = 4;
+  }
+
+
+  async function playFinalScene() {
+    busy = true;
+    button.disabled = true;
+    button.style.display = 'none';
+    if (tag) tag.textContent = 'Prototyp • epilog';
+    // Ekran gaśnie, a potem odsłania zupełnie nową scenę.
+    await animate(650, t => {
+      transitionFade.setAttribute('opacity', String(t));
+    });
+    finalScene.setAttribute('opacity', '1');
+    finalGhost.setAttribute('opacity', '0');
+    heavenLight.setAttribute('opacity', '0');
+    await sleep(250);
+    await animate(850, t => {
+      transitionFade.setAttribute('opacity', String(1-t));
+    });
+    // Duch zaczyna unosić się pionowo z łóżka, coraz jaśniejszy, aż do światła.
+    await animate(3600, t => {
+      const eased = t*t*(3-2*t);
+      finalGhost.setAttribute('opacity', String(.2 + .8*eased));
+      finalGhost.setAttribute('transform', 'translate(' + (Math.sin(t*8)*5) + ' ' + (-300*eased) + ') scale(' + (1 - .08*eased) + ')');
+      heavenLight.setAttribute('opacity', String(Math.min(1, t*1.35)));
+      transitionFade.setAttribute('opacity', String(Math.max(0, (t-.82)/.18)*.38));
+    });
+    transitionFade.setAttribute('opacity', '0');
+    const caption = document.getElementById('finalCaption');
+    if (caption) caption.textContent = 'ODLECIAŁ DO NIEBA';
+    button.textContent = 'KONIEC';
     button.style.display = '';
     button.disabled = true;
     busy = false;
-    stage = 4;
+    stage = 5;
   }
 
   button.addEventListener('click', async function () {
@@ -649,7 +743,11 @@ svg{display:block;width:100%;height:100%}
       await playHubertScene();
       return;
     }
-    if (stage >= 4) return;
+    if (stage === 4) {
+      await playFinalScene();
+      return;
+    }
+    if (stage >= 5) return;
     busy = true;
     button.disabled = true;
     button.style.display = 'none';
