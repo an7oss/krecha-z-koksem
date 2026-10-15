@@ -266,9 +266,14 @@ svg{display:block;width:100%;height:100%}
           </g>
         </g>
         <g id="sprayMist" opacity="0">
-          <path d="M700 276 Q650 268 610 280 Q570 289 548 294" fill="none" stroke="#d7e6e8" stroke-width="13" stroke-linecap="round" opacity=".55"/>
-          <path d="M700 276 Q650 268 610 280 Q570 289 548 294" fill="none" stroke="#f4fbff" stroke-width="5" stroke-linecap="round" opacity=".92"/>
-          <g fill="#e7f4f7" opacity=".9"><circle cx="654" cy="270" r="4"/><circle cx="632" cy="283" r="3"/><circle cx="605" cy="276" r="3"/><circle cx="582" cy="290" r="4"/><circle cx="562" cy="286" r="2.5"/></g>
+          <!-- A thick, unmistakable jet from the FOX nozzle straight across Hubert's eyes -->
+          <path d="M218 236 Q300 245 365 265 T492 285" fill="none" stroke="#d9edf2" stroke-width="42" stroke-linecap="round" opacity=".58"/>
+          <path d="M218 236 Q300 245 365 265 T492 285" fill="none" stroke="#f0faff" stroke-width="27" stroke-linecap="round" opacity=".82"/>
+          <path d="M218 236 Q300 245 365 265 T492 285" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity=".98"/>
+          <!-- Large billowing pepper-spray cloud around both eyes -->
+          <path d="M463 276 C447 256 466 241 486 253 C492 230 520 233 526 254 C549 246 567 266 552 283 C572 300 552 321 532 311 C518 333 490 319 492 303 C468 315 449 297 463 276Z" fill="#e9f6fa" opacity=".78"/>
+          <path d="M474 277 C465 263 482 251 494 263 C506 245 526 259 520 274 C542 272 548 291 531 300 C520 316 498 305 500 291 C482 301 468 290 474 277Z" fill="#ffffff" opacity=".76"/>
+          <g fill="#f7fcff" opacity=".95"><circle cx="454" cy="260" r="7"/><circle cx="467" cy="244" r="5"/><circle cx="489" cy="238" r="6"/><circle cx="527" cy="243" r="7"/><circle cx="550" cy="263" r="5"/><circle cx="560" cy="286" r="7"/><circle cx="542" cy="311" r="6"/><circle cx="515" cy="326" r="5"/><circle cx="482" cy="314" r="7"/><circle cx="456" cy="296" r="5"/></g>
         </g>
         <g id="boardArm" transform="translate(0 -320)">
           <path d="M760 30 Q740 78 705 115 L665 160" fill="none" stroke="#25242a" stroke-width="47" stroke-linecap="round"/>
@@ -554,7 +559,7 @@ svg{display:block;width:100%;height:100%}
     // Keep a clearly visible spray cloud hanging in front of his face.
     sprayMist.style.opacity = '1';
     await animate(520, t => {
-      sprayMist.setAttribute('transform', 'translate(' + (-65*t) + ' ' + (8*t) + ') scale(' + (1 + .12*t) + ')');
+      sprayMist.setAttribute('transform', 'translate(' + (2*Math.sin(t*5)) + ' ' + (2*Math.sin(t*7)) + ') scale(' + (1 + .08*t) + ')');
       setHead(-9 - 5*t, -4*t, -4*t);
       mouthOpen.style.opacity = String(.2 + .8*t);
       reactionLines.style.opacity = String(t);
@@ -584,7 +589,7 @@ svg{display:block;width:100%;height:100%}
       reactionLines.style.opacity = hit > .2 ? '1' : '.35';
       // The mist billows and lingers instead of disappearing after the first puff.
       sprayMist.style.opacity = String(.7 + .3 * Math.abs(Math.sin(ms / 230)));
-      sprayMist.setAttribute('transform', 'translate(' + (-65 - 18 * Math.sin(ms / 180)) + ' ' + (8 + 5 * Math.sin(ms / 145)) + ') scale(' + (1.12 + .09 * Math.abs(Math.sin(ms / 210))) + ')');
+      sprayMist.setAttribute('transform', 'translate(' + (3 * Math.sin(ms / 180)) + ' ' + (4 * Math.sin(ms / 145)) + ') scale(' + (1.02 + .12 * Math.abs(Math.sin(ms / 210))) + ')');
       mouthOpen.style.opacity = String(.55 + .45 * Math.abs(Math.sin(ms / 190)));
     });
     impactStars.style.opacity = '0';
