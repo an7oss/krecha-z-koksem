@@ -396,7 +396,7 @@ svg{display:block;width:100%;height:100%}
           <g transform="rotate(5 490 430)">
             <rect x="355" y="405" width="270" height="55" rx="13" fill="#f3e8d8" stroke="#6b4b45" stroke-width="4"/>
             <text x="490" y="427" font-size="15" font-weight="1000" text-anchor="middle" fill="#292126">OSTATNIE SŁOWA:</text>
-            <text x="490" y="448" font-size="18" font-weight="1000" text-anchor="middle" fill="#b62e31">„JESZCZE JEDEN KĘS”</text>
+            <text x="490" y="448" font-size="18" font-weight="1000" text-anchor="middle" fill="#b62e31">„JEBAĆ KAŚKE KURWE DZIWKE CIPOZWISKE!!”</text>
           </g>
         </g>
         <!-- osobny, klasyczny duch — nie kopia twarzy bohatera -->
@@ -410,9 +410,9 @@ svg{display:block;width:100%;height:100%}
           <circle cx="420" cy="345" r="5" fill="#fff" opacity=".9"/><circle cx="557" cy="362" r="4" fill="#fff" opacity=".9"/><circle cx="456" cy="310" r="4" fill="#fff" opacity=".9"/>
         </g>
         <g id="deathCaption" opacity="0">
-          <rect x="185" y="20" width="610" height="66" rx="16" fill="#130f16" stroke="#c73a37" stroke-width="4"/>
-          <text x="490" y="47" text-anchor="middle" font-size="19" font-weight="1000" letter-spacing="2" fill="#fff1df">SYSTEM: SEBA ZAKOŃCZYŁ PRACĘ</text>
-          <text x="490" y="70" text-anchor="middle" font-size="15" font-weight="900" fill="#e6a6a2">POWÓD: PRZECIĄŻENIE KEBABEM</text>
+          <rect x="120" y="20" width="740" height="70" rx="16" fill="#130f16" stroke="#c73a37" stroke-width="4"/>
+          <text x="490" y="49" text-anchor="middle" font-size="19" font-weight="1000" letter-spacing="2" fill="#fff1df">OSTATNIE SŁOWA SEBY:</text>
+          <text x="490" y="74" text-anchor="middle" font-size="19" font-weight="1000" fill="#ffb9b3">JEBAĆ KAŚKE KURWE DZIWKE CIPOZWISKE!!</text>
         </g>
         <!-- wyraźna, duża chmura u góry i czytelny napis NIEBO -->
         <g id="heavenLight" opacity="0">
@@ -454,6 +454,28 @@ svg{display:block;width:100%;height:100%}
         </g>
         <text id="finalCaption" x="490" y="720" text-anchor="middle" font-size="25" font-weight="950" letter-spacing="2" fill="#eee7d9" stroke="#17131a" stroke-width="5" paint-order="stroke">KONIEC</text>
       </g>
+      <g id="theaterCurtain" opacity="0" pointer-events="none">
+        <g id="leftCurtain" transform="translate(-510 0)">
+          <path d="M0 0 H510 Q470 90 495 180 Q455 290 490 380 Q455 485 495 590 Q465 675 510 760 H0Z" fill="#690b17"/>
+          <path d="M25 0 H95 Q65 170 93 300 Q65 450 92 600 Q74 700 105 760 H25Z" fill="#a20e22"/>
+          <path d="M155 0 H215 Q185 180 212 320 Q184 470 210 620 Q195 700 225 760 H155Z" fill="#8b0a1c"/>
+          <path d="M300 0 H365 Q332 180 361 330 Q330 490 359 630 Q342 700 375 760 H300Z" fill="#a80e22"/>
+          <path d="M440 0 H510 Q470 180 500 340 Q465 500 500 640 L510 760 H440 Q465 590 438 460 Q470 300 440 0Z" fill="#740816"/>
+          <path d="M0 0 H510 V42 Q380 66 255 42 Q130 66 0 42Z" fill="#bd2030"/>
+          <path d="M0 0 H510" stroke="#e15a60" stroke-width="9"/>
+        </g>
+        <g id="rightCurtain" transform="translate(510 0)">
+          <path d="M470 0 H980 V760 H470 Q515 675 485 590 Q525 485 490 380 Q525 290 485 180 Q510 90 470 0Z" fill="#690b17"/>
+          <path d="M875 0 H945 V760 H875 Q906 600 878 450 Q905 300 877 150Z" fill="#a20e22"/>
+          <path d="M735 0 H795 V760 H735 Q765 620 738 470 Q765 320 737 160Z" fill="#8b0a1c"/>
+          <path d="M585 0 H650 V760 H585 Q615 630 588 490 Q615 330 587 180Z" fill="#a80e22"/>
+          <path d="M470 0 H540 Q510 180 540 340 Q510 500 540 640 L540 760 H470 Q495 590 468 460 Q500 300 470 0Z" fill="#740816"/>
+          <path d="M470 0 H980 V42 Q850 66 725 42 Q600 66 470 42Z" fill="#bd2030"/>
+          <path d="M470 0 H980" stroke="#e15a60" stroke-width="9"/>
+        </g>
+        <path d="M0 0 Q490 42 980 0 L980 60 Q490 95 0 60Z" fill="#c12636"/>
+        <path d="M0 0 Q490 42 980 0" fill="none" stroke="#ef6c72" stroke-width="8"/>
+      </g>
       <rect id="transitionFade" x="0" y="0" width="980" height="760" fill="#08070a" opacity="0" pointer-events="none"/>
     </svg>
     <div class="grain"></div>
@@ -491,9 +513,12 @@ svg{display:block;width:100%;height:100%}
   const finalGhost = document.getElementById('finalGhost');
   const deathGags = document.getElementById('deathGags');
   const deathCaption = document.getElementById('deathCaption');
+  const theaterCurtain = document.getElementById('theaterCurtain');
+  const leftCurtain = document.getElementById('leftCurtain');
+  const rightCurtain = document.getElementById('rightCurtain');
   const heavenLight = document.getElementById('heavenLight');
   const memorialNotice = document.getElementById('memorialNotice');
-  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade || !finalScene || !finalGhost || !heavenLight || !memorialNotice || !deathGags || !deathCaption) return;
+  if (!button || !paper || !hand || !flour || !head || !eraseMask || !card || !bottle || !bottleHand || !bottleHand2 || !sceneProps || !bottleSmoke || !exhaleSmoke || !medicineProps || !whitePills || !pillTaking || !pill1 || !pill2 || !pill3 || !pillReach || !mouthOpen || !mouthTongue || !hubertFX || !sprayArm || !sprayMist || !boardArm || !fistArm || !impactStars || !reactionLines || !hubertCaption || !aftermathMarks || !transitionFade || !finalScene || !finalGhost || !heavenLight || !memorialNotice || !deathGags || !deathCaption || !theaterCurtain || !leftCurtain || !rightCurtain) return;
   const headParent = head.parentNode;
   const headNextSibling = head.nextSibling;
   let busy = false;
@@ -793,11 +818,14 @@ svg{display:block;width:100%;height:100%}
     finalGhost.setAttribute('opacity', '0');
     heavenLight.setAttribute('opacity', '0');
     memorialNotice.setAttribute('opacity', '0');
+    theaterCurtain.setAttribute('opacity', '0');
+    leftCurtain.setAttribute('transform', 'translate(-510 0)');
+    rightCurtain.setAttribute('transform', 'translate(510 0)');
     deathGags.setAttribute('opacity', '0');
     deathCaption.setAttribute('opacity', '0');
     await sleep(250);
     await animate(850, t => transitionFade.setAttribute('opacity', String(1-t)));
-    // Najpierw absurdalny komunikat i wizualny gag, potem dusza wystrzeliwuje do nieba.
+    // Absurdalne ostatnie sekundy, ostatnie słowa i kurtyna jak w teatrze.
     deathGags.setAttribute('opacity', '1');
     await animate(1150, t => {
       deathCaption.setAttribute('opacity', String(Math.min(1, t*2)));
@@ -805,27 +833,16 @@ svg{display:block;width:100%;height:100%}
       document.getElementById('sleepingBody').setAttribute('transform', 'translate(' + shake + ' ' + (Math.sin(t*24)*2) + ') rotate(' + (-2 + Math.sin(t*20)*1.5) + ' 490 550)');
       transitionFade.setAttribute('opacity', String(.08 + Math.abs(Math.sin(t*16))*.09));
     });
-    await animate(500, t => {
-      deathCaption.setAttribute('opacity', String(1-t));
-      transitionFade.setAttribute('opacity', String(.15 + t*.45));
-    });
     transitionFade.setAttribute('opacity', '0');
-    // Dusza odrywa się od łóżka i leci w stronę dużej chmury.
-    await animate(3900, t => {
+    await sleep(1600);
+    theaterCurtain.setAttribute('opacity', '1');
+    await animate(1500, t => {
       const eased = t*t*(3-2*t);
-      finalGhost.setAttribute('opacity', String(.95 - .2*eased));
-      finalGhost.setAttribute('transform', 'translate(' + (Math.sin(t*8)*5) + ' ' + (-390*eased) + ') scale(' + (1 - .12*eased) + ')');
-      heavenLight.setAttribute('opacity', String(Math.min(1, t*1.8)));
-      deathGags.setAttribute('opacity', String(1-t));
-      transitionFade.setAttribute('opacity', '0');
+      leftCurtain.setAttribute('transform', 'translate(' + (-510 + 510*eased) + ' 0)');
+      rightCurtain.setAttribute('transform', 'translate(' + (510 - 510*eased) + ' 0)');
     });
-    // Chwilowe zanikanie, potem kościelna klepsydra z nekrologiem.
-    await animate(700, t => transitionFade.setAttribute('opacity', String(t)));
-    finalScene.setAttribute('opacity', '0');
-    memorialNotice.setAttribute('opacity', '1');
-    await animate(900, t => transitionFade.setAttribute('opacity', String(1-t)));
-    button.textContent = 'KONIEC';
-    button.style.display = '';
+    // Kurtyna całkowicie zasłoniła scenę: koniec, bez dodatkowego ekranu.
+    button.style.display = 'none';
     button.disabled = true;
     busy = false;
     stage = 5;
